@@ -34,5 +34,27 @@ namespace RestaurantManagement
             Form Burgers = new Form();
             Burgers.Show();
         }
+
+        private void panel8_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            Form Main = new Main();
+            this.Hide();
+            Main.Show();
+        }
+
+        private void Order_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

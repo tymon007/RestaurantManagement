@@ -59,5 +59,18 @@ namespace RestaurantManagement
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form Profil = new Profil();
+            this.Hide();
+            Profil.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Form ManageOrder = new ManageOrder();
+            this.Hide(); ManageOrder.Show();
+        }
     }
 }

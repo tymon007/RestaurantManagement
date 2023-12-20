@@ -38,6 +38,8 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,15 +87,15 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(245, 124, 1);
+            button1.BackColor = Color.FromArgb(255, 163, 70);
             button1.FlatStyle = FlatStyle.Popup;
             button1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.Transparent;
-            button1.Location = new Point(146, 276);
+            button1.Location = new Point(137, 155);
             button1.Name = "button1";
-            button1.Size = new Size(744, 189);
+            button1.Size = new Size(744, 150);
             button1.TabIndex = 4;
-            button1.Text = "Zamówienie";
+            button1.Text = "Nowe zamówienie";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -113,9 +115,9 @@
             button2.BackColor = Color.FromArgb(204, 78, 17);
             button2.FlatStyle = FlatStyle.Popup;
             button2.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(146, 471);
+            button2.Location = new Point(137, 467);
             button2.Name = "button2";
-            button2.Size = new Size(744, 189);
+            button2.Size = new Size(744, 150);
             button2.TabIndex = 6;
             button2.Text = "Rezerwacje";
             button2.UseVisualStyleBackColor = false;
@@ -123,16 +125,17 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.FromArgb(43, 43, 43);
+            button3.BackColor = Color.FromArgb(40, 40, 40);
             button3.FlatStyle = FlatStyle.Popup;
             button3.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(146, 666);
+            button3.Location = new Point(137, 623);
             button3.Name = "button3";
-            button3.Size = new Size(476, 189);
+            button3.Size = new Size(476, 150);
             button3.TabIndex = 7;
             button3.Text = "Moj profil";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -141,12 +144,40 @@
             button4.FlatStyle = FlatStyle.Popup;
             button4.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             button4.ForeColor = Color.White;
-            button4.Location = new Point(628, 666);
+            button4.Location = new Point(619, 623);
             button4.Name = "button4";
-            button4.Size = new Size(262, 189);
+            button4.Size = new Size(262, 150);
             button4.TabIndex = 8;
-            button4.Text = "Ustawienia";
+            button4.Text = "Raporty";
             button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Black;
+            button5.BackgroundImageLayout = ImageLayout.Center;
+            button5.FlatStyle = FlatStyle.Popup;
+            button5.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button5.ForeColor = Color.White;
+            button5.Location = new Point(137, 779);
+            button5.Name = "button5";
+            button5.Size = new Size(744, 109);
+            button5.TabIndex = 9;
+            button5.Text = "Zarządzanie użytkownikami";
+            button5.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(227, 114, 0);
+            button6.FlatStyle = FlatStyle.Popup;
+            button6.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button6.ForeColor = Color.Transparent;
+            button6.Location = new Point(137, 311);
+            button6.Name = "button6";
+            button6.Size = new Size(744, 150);
+            button6.TabIndex = 10;
+            button6.Text = "Zarządzanie zamówieniami";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // Main
             // 
@@ -156,6 +187,8 @@
             BackgroundImage = Properties.Resources.nick_karvounis_Ciqxn7FE4vE_unsplash;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1020, 1020);
+            Controls.Add(button6);
+            Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
@@ -183,5 +216,7 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private Button button5;
+        private Button button6;
     }
 }
