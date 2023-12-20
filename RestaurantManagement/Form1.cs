@@ -7,7 +7,6 @@ namespace RestaurantManagement
         public Form1()
         {
             InitializeComponent();
-            pictureBox1.BackColor = Color.Transparent;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -17,7 +16,6 @@ namespace RestaurantManagement
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void button_login_Click(object sender, EventArgs e)

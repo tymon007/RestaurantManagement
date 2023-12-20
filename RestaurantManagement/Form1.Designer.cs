@@ -30,99 +30,97 @@
         {
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
             button_login = new Button();
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1 = new Panel();
+            label3 = new Label();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.BackColor = Color.Black;
+            textBox1.BackColor = Color.White;
             textBox1.BorderStyle = BorderStyle.FixedSingle;
+            textBox1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.ForeColor = Color.White;
             textBox1.ImeMode = ImeMode.NoControl;
-            textBox1.Location = new Point(176, 208);
+            textBox1.Location = new Point(0, 421);
+            textBox1.MinimumSize = new Size(1020, 200);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(120, 23);
+            textBox1.PlaceholderText = "Login";
+            textBox1.Size = new Size(1020, 200);
             textBox1.TabIndex = 0;
+            textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox2
             // 
-            textBox2.BackColor = Color.Black;
+            textBox2.BackColor = Color.White;
             textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.ForeColor = Color.White;
+            textBox2.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox2.ForeColor = Color.Black;
             textBox2.ImeMode = ImeMode.NoControl;
-            textBox2.Location = new Point(176, 289);
+            textBox2.Location = new Point(0, 620);
+            textBox2.MinimumSize = new Size(1020, 200);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(120, 23);
+            textBox2.PlaceholderText = "Hasło";
+            textBox2.Size = new Size(1020, 200);
             textBox2.TabIndex = 1;
+            textBox2.TextAlign = HorizontalAlignment.Center;
             textBox2.UseSystemPasswordChar = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Black;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(215, 190);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Login:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Black;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(215, 271);
-            label2.Name = "label2";
-            label2.Size = new Size(40, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Hasło:";
             // 
             // button_login
             // 
             button_login.BackColor = Color.Black;
             button_login.FlatStyle = FlatStyle.Popup;
+            button_login.Font = new Font("Segoe UI", 36F, FontStyle.Regular, GraphicsUnit.Point);
             button_login.ForeColor = Color.White;
-            button_login.Location = new Point(196, 340);
+            button_login.Location = new Point(0, 820);
+            button_login.MinimumSize = new Size(800, 200);
             button_login.Name = "button_login";
-            button_login.Size = new Size(81, 34);
+            button_login.Size = new Size(1020, 200);
             button_login.TabIndex = 4;
             button_login.Text = "Zaloguj";
             button_login.UseVisualStyleBackColor = false;
             button_login.Click += button_login_Click;
             // 
-            // pictureBox1
+            // panel1
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.burger;
-            pictureBox1.Location = new Point(145, 22);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(171, 144);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
+            panel1.BackColor = Color.Transparent;
+            panel1.BackgroundImage = Properties.Resources.birgur;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Location = new Point(250, 101);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(535, 241);
+            panel1.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Snap ITC", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(247, 204, 60);
+            label3.Location = new Point(267, 19);
+            label3.Name = "label3";
+            label3.Size = new Size(505, 63);
+            label3.TabIndex = 6;
+            label3.Text = "Trzej Burgerowie";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkMagenta;
-            ClientSize = new Size(488, 481);
-            Controls.Add(pictureBox1);
+            BackColor = Color.FromArgb(192, 64, 0);
+            ClientSize = new Size(1020, 1020);
+            Controls.Add(label3);
+            Controls.Add(panel1);
             Controls.Add(button_login);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             ForeColor = Color.White;
+            FormBorderStyle = FormBorderStyle.None;
+            MaximumSize = new Size(1020, 1020);
+            MinimumSize = new Size(1020, 1020);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -131,9 +129,8 @@
 
         private TextBox textBox1;
         private TextBox textBox2;
-        private Label label1;
-        private Label label2;
         private Button button_login;
-        private PictureBox pictureBox1;
+        private Panel panel1;
+        private Label label3;
     }
 }

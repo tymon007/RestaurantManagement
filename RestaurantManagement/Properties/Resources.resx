@@ -118,10 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="nick-karvounis-Ciqxn7FE4vE-unsplash" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nick-karvounis-Ciqxn7FE4vE-unsplash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="borgar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\borgar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="burger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\burger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="birgur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\birgur.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings-icon-2048x2046-cw28eevx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings-icon-2048x2046-cw28eevx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

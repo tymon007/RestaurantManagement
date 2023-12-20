@@ -17,7 +17,6 @@ namespace RestaurantManagement
         {
             InitializeComponent();
         }
-
         private void Main_Load(object sender, EventArgs e)
         {
             System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -44,6 +43,21 @@ namespace RestaurantManagement
             this.Hide();
             Form Form1 = new Form1();
             Form1.Show();
+        }
+
+        private void label_time_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_welcome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
