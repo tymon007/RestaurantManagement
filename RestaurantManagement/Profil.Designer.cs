@@ -45,10 +45,12 @@
             panel3 = new Panel();
             panel4 = new Panel();
             button1 = new Button();
-            monthCalendar1 = new MonthCalendar();
             label9 = new Label();
             label10 = new Label();
             label11 = new Label();
+            comboBoxRok = new ComboBox();
+            comboBoxMiesiac = new ComboBox();
+            comboBoxDzien = new ComboBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -224,13 +226,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // monthCalendar1
-            // 
-            monthCalendar1.CalendarDimensions = new Size(3, 3);
-            monthCalendar1.Location = new Point(85, 480);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 18;
-            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -261,15 +256,49 @@
             label11.TabIndex = 21;
             label11.Text = "(po kliknieciu w komorke otworzy sie formularz gdzie mozna uzupelnic, edytowac, usunac lub podejrzec godziny na wybrany dzien)";
             // 
+            // comboBoxRok
+            // 
+            comboBoxRok.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxRok.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxRok.FormattingEnabled = true;
+            comboBoxRok.Location = new Point(202, 589);
+            comboBoxRok.Name = "comboBoxRok";
+            comboBoxRok.Size = new Size(121, 40);
+            comboBoxRok.TabIndex = 22;
+            comboBoxRok.SelectedIndexChanged += comboBoxRok_SelectedIndexChanged;
+            // 
+            // comboBoxMiesiac
+            // 
+            comboBoxMiesiac.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxMiesiac.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxMiesiac.FormattingEnabled = true;
+            comboBoxMiesiac.Location = new Point(329, 589);
+            comboBoxMiesiac.Name = "comboBoxMiesiac";
+            comboBoxMiesiac.Size = new Size(121, 40);
+            comboBoxMiesiac.TabIndex = 23;
+            comboBoxMiesiac.SelectedIndexChanged += comboBoxMiesiac_SelectedIndexChanged;
+            // 
+            // comboBoxDzien
+            // 
+            comboBoxDzien.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxDzien.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxDzien.FormattingEnabled = true;
+            comboBoxDzien.Location = new Point(456, 589);
+            comboBoxDzien.Name = "comboBoxDzien";
+            comboBoxDzien.Size = new Size(121, 40);
+            comboBoxDzien.TabIndex = 24;
+            // 
             // Profil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1020, 1020);
+            Controls.Add(comboBoxDzien);
+            Controls.Add(comboBoxMiesiac);
+            Controls.Add(comboBoxRok);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(label9);
-            Controls.Add(monthCalendar1);
             Controls.Add(panel3);
             Controls.Add(label8);
             Controls.Add(label1);
@@ -306,9 +335,11 @@
         private Panel panel3;
         private Panel panel4;
         private Button button1;
-        private MonthCalendar monthCalendar1;
         private Label label9;
         private Label label10;
         private Label label11;
+        private ComboBox comboBoxRok;
+        private ComboBox comboBoxMiesiac;
+        private ComboBox comboBoxDzien;
     }
 }

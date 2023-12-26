@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RestaurantManagement.Helpers;
 
 namespace RestaurantManagement
 {
     public partial class Order : Form
     {
+        Helper helper = new Helper();
         public Order()
         {
             InitializeComponent();
@@ -55,6 +57,11 @@ namespace RestaurantManagement
         private void Order_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            helper.OpenOnScreenKeyboard();
         }
     }
 }

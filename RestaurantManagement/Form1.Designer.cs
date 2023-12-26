@@ -49,6 +49,7 @@
             textBox1.Size = new Size(1020, 200);
             textBox1.TabIndex = 0;
             textBox1.TextAlign = HorizontalAlignment.Center;
+            textBox1.Click += textBox1_Click;
             // 
             // textBox2
             // 
@@ -65,6 +66,7 @@
             textBox2.TabIndex = 1;
             textBox2.TextAlign = HorizontalAlignment.Center;
             textBox2.UseSystemPasswordChar = true;
+            textBox2.Click += textBox2_Click;
             // 
             // button_login
             // 
