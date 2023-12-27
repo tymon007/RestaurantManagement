@@ -1,6 +1,6 @@
 ﻿namespace RestaurantManagement
 {
-    partial class Profil
+    partial class Grafik
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Profil));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Grafik));
             panel1 = new Panel();
             label_welcome = new Label();
             button_logout = new Button();
             label_time = new Label();
             panel2 = new Panel();
-            label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
@@ -43,16 +42,23 @@
             label7 = new Label();
             label8 = new Label();
             panel3 = new Panel();
-            panel4 = new Panel();
-            button1 = new Button();
             label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
             comboBoxRok = new ComboBox();
             comboBoxMiesiac = new ComboBox();
             comboBoxDzien = new ComboBox();
+            panelCzasPracy = new Panel();
+            dateTimePickerDo = new DateTimePicker();
+            dateTimePickerOd = new DateTimePicker();
+            buttonZapisz = new Button();
+            label16 = new Label();
+            comboBoxStatus = new ComboBox();
+            label15 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            panelCzasPracy.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -109,16 +115,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(266, 255);
             panel2.TabIndex = 7;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(171, 361);
-            label1.Name = "label1";
-            label1.Size = new Size(105, 21);
-            label1.TabIndex = 8;
-            label1.Text = "Zmień zdjęcie";
             // 
             // label2
             // 
@@ -191,8 +187,6 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(panel4);
-            panel3.Controls.Add(button1);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label4);
@@ -204,66 +198,24 @@
             panel3.Size = new Size(592, 255);
             panel3.TabIndex = 17;
             // 
-            // panel4
-            // 
-            panel4.BackgroundImage = Properties.Resources.edit;
-            panel4.BackgroundImageLayout = ImageLayout.Stretch;
-            panel4.Location = new Point(402, 7);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(58, 51);
-            panel4.TabIndex = 16;
-            // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(385, 1);
-            button1.Name = "button1";
-            button1.Size = new Size(207, 70);
-            button1.TabIndex = 15;
-            button1.Text = "Edytuj dane";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(85, 439);
+            label9.Location = new Point(116, 422);
             label9.Name = "label9";
             label9.Size = new Size(87, 32);
             label9.TabIndex = 19;
             label9.Text = "Grafik:";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(270, 453);
-            label10.Name = "label10";
-            label10.Size = new Size(314, 15);
-            label10.TabIndex = 20;
-            label10.Text = "(tutaj bedzie kalendarz dostosowany do obslugi dotykiem)";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(201, 945);
-            label11.Name = "label11";
-            label11.Size = new Size(699, 15);
-            label11.TabIndex = 21;
-            label11.Text = "(po kliknieciu w komorke otworzy sie formularz gdzie mozna uzupelnic, edytowac, usunac lub podejrzec godziny na wybrany dzien)";
             // 
             // comboBoxRok
             // 
             comboBoxRok.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxRok.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxRok.FormattingEnabled = true;
-            comboBoxRok.Location = new Point(202, 589);
+            comboBoxRok.Location = new Point(121, 487);
             comboBoxRok.Name = "comboBoxRok";
-            comboBoxRok.Size = new Size(121, 40);
+            comboBoxRok.Size = new Size(250, 40);
             comboBoxRok.TabIndex = 22;
             comboBoxRok.SelectedIndexChanged += comboBoxRok_SelectedIndexChanged;
             // 
@@ -272,36 +224,143 @@
             comboBoxMiesiac.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxMiesiac.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxMiesiac.FormattingEnabled = true;
-            comboBoxMiesiac.Location = new Point(329, 589);
+            comboBoxMiesiac.Location = new Point(371, 487);
             comboBoxMiesiac.Name = "comboBoxMiesiac";
-            comboBoxMiesiac.Size = new Size(121, 40);
+            comboBoxMiesiac.Size = new Size(250, 40);
             comboBoxMiesiac.TabIndex = 23;
             comboBoxMiesiac.SelectedIndexChanged += comboBoxMiesiac_SelectedIndexChanged;
+            comboBoxMiesiac.Click += comboBoxMiesiac_Click;
             // 
             // comboBoxDzien
             // 
             comboBoxDzien.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxDzien.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxDzien.FormattingEnabled = true;
-            comboBoxDzien.Location = new Point(456, 589);
+            comboBoxDzien.Location = new Point(621, 487);
             comboBoxDzien.Name = "comboBoxDzien";
-            comboBoxDzien.Size = new Size(121, 40);
+            comboBoxDzien.Size = new Size(250, 40);
             comboBoxDzien.TabIndex = 24;
+            comboBoxDzien.SelectedIndexChanged += comboBoxDzien_SelectedIndexChanged;
+            comboBoxDzien.Click += comboBoxDzien_Click;
+            // 
+            // panelCzasPracy
+            // 
+            panelCzasPracy.Controls.Add(dateTimePickerDo);
+            panelCzasPracy.Controls.Add(dateTimePickerOd);
+            panelCzasPracy.Controls.Add(buttonZapisz);
+            panelCzasPracy.Controls.Add(label16);
+            panelCzasPracy.Controls.Add(comboBoxStatus);
+            panelCzasPracy.Controls.Add(label15);
+            panelCzasPracy.Location = new Point(621, 574);
+            panelCzasPracy.Name = "panelCzasPracy";
+            panelCzasPracy.Size = new Size(259, 265);
+            panelCzasPracy.TabIndex = 25;
+            // 
+            // dateTimePickerDo
+            // 
+            dateTimePickerDo.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerDo.Format = DateTimePickerFormat.Time;
+            dateTimePickerDo.Location = new Point(136, 107);
+            dateTimePickerDo.Name = "dateTimePickerDo";
+            dateTimePickerDo.Size = new Size(114, 39);
+            dateTimePickerDo.TabIndex = 36;
+            // 
+            // dateTimePickerOd
+            // 
+            dateTimePickerOd.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerOd.Format = DateTimePickerFormat.Time;
+            dateTimePickerOd.Location = new Point(3, 107);
+            dateTimePickerOd.Name = "dateTimePickerOd";
+            dateTimePickerOd.Size = new Size(112, 39);
+            dateTimePickerOd.TabIndex = 35;
+            // 
+            // buttonZapisz
+            // 
+            buttonZapisz.FlatStyle = FlatStyle.Flat;
+            buttonZapisz.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonZapisz.Location = new Point(3, 171);
+            buttonZapisz.Name = "buttonZapisz";
+            buttonZapisz.Size = new Size(249, 58);
+            buttonZapisz.TabIndex = 34;
+            buttonZapisz.Text = "Zapisz";
+            buttonZapisz.UseVisualStyleBackColor = true;
+            buttonZapisz.Click += buttonZapisz_Click;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.Location = new Point(3, 83);
+            label16.Name = "label16";
+            label16.Size = new Size(87, 21);
+            label16.TabIndex = 31;
+            label16.Text = "Czas pracy:";
+            // 
+            // comboBoxStatus
+            // 
+            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStatus.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxStatus.FormattingEnabled = true;
+            comboBoxStatus.Location = new Point(3, 26);
+            comboBoxStatus.Name = "comboBoxStatus";
+            comboBoxStatus.Size = new Size(250, 40);
+            comboBoxStatus.TabIndex = 29;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label15.Location = new Point(3, 2);
+            label15.Name = "label15";
+            label15.Size = new Size(55, 21);
+            label15.TabIndex = 28;
+            label15.Text = "Status:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(121, 463);
+            label12.Name = "label12";
+            label12.Size = new Size(40, 21);
+            label12.TabIndex = 26;
+            label12.Text = "Rok:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label13.Location = new Point(371, 463);
+            label13.Name = "label13";
+            label13.Size = new Size(65, 21);
+            label13.TabIndex = 27;
+            label13.Text = "Miesiąc:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label14.Location = new Point(621, 463);
+            label14.Name = "label14";
+            label14.Size = new Size(52, 21);
+            label14.TabIndex = 28;
+            label14.Text = "Dzień:";
             // 
             // Profil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1020, 1020);
+            Controls.Add(label14);
+            Controls.Add(label13);
+            Controls.Add(label12);
+            Controls.Add(panelCzasPracy);
             Controls.Add(comboBoxDzien);
             Controls.Add(comboBoxMiesiac);
             Controls.Add(comboBoxRok);
-            Controls.Add(label11);
-            Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(panel3);
             Controls.Add(label8);
-            Controls.Add(label1);
             Controls.Add(panel2);
             Controls.Add(panel1);
             ForeColor = SystemColors.ControlText;
@@ -309,10 +368,13 @@
             Name = "Profil";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Profil";
+            Load += Profil_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panelCzasPracy.ResumeLayout(false);
+            panelCzasPracy.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -324,7 +386,6 @@
         private Button button_logout;
         private Label label_time;
         private Panel panel2;
-        private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -333,13 +394,19 @@
         private Label label7;
         private Label label8;
         private Panel panel3;
-        private Panel panel4;
-        private Button button1;
         private Label label9;
-        private Label label10;
-        private Label label11;
         private ComboBox comboBoxRok;
         private ComboBox comboBoxMiesiac;
         private ComboBox comboBoxDzien;
+        private Panel panelCzasPracy;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label16;
+        private ComboBox comboBoxStatus;
+        private Label label15;
+        private Button buttonZapisz;
+        private DateTimePicker dateTimePickerDo;
+        private DateTimePicker dateTimePickerOd;
     }
 }

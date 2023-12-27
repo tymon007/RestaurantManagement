@@ -29,5 +29,11 @@ namespace RestaurantManagement.Helpers
                 MessageBox.Show("Wystąpił błąd podczas otwierania klawiatury ekranowej: " + ex.Message, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void SetTimePickers(DateTimePicker timepicker1, DateTimePicker timepicker2)
+        {
+            timepicker1.Value = DateTime.Now;
+            timepicker2.Value = DateTime.Now.AddHours(8);
+        }
     }
 }

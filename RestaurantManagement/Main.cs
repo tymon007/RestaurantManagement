@@ -62,7 +62,7 @@ namespace RestaurantManagement
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form Profil = new Profil();
+            Form Profil = new Grafik();
             this.Hide();
             Profil.Show();
         }

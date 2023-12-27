@@ -133,7 +133,7 @@
             button3.Name = "button3";
             button3.Size = new Size(476, 150);
             button3.TabIndex = 7;
-            button3.Text = "Moj profil";
+            button3.Text = "Grafik";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
