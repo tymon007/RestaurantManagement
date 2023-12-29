@@ -57,7 +57,9 @@ namespace RestaurantManagement
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form rezerwacje = new Rezerwacje();
+            Hide();
+            rezerwacje.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

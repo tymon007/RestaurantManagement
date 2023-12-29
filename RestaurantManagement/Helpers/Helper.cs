@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestaurantManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -34,6 +35,18 @@ namespace RestaurantManagement.Helpers
         {
             timepicker1.Value = DateTime.Now;
             timepicker2.Value = DateTime.Now.AddHours(8);
+        }
+
+        public void GenerateImagesWithDescription(int Count, List<ImageWithDescription> list)
+        {
+            Image bareImage = Image.FromFile("C:\\Users\\puddi\\Documents\\GitHub\\RestaurantManagement\\RestaurantManagement\\Resources\\pngwing.com.png");
+            for (int i = 0; i < Count; i++)
+            {
+                ImageWithDescription image = new ImageWithDescription();
+                image.description = $"Nazwa produktu{i}";
+                image.image = bareImage;
+                list.Add(image);
+            }
         }
     }
 }

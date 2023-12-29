@@ -18,13 +18,10 @@ namespace RestaurantManagement
 
         private void UpdateDaysComboBox()
         {
-            // Pobierz wybrane rok
             int selectedYear = (int)comboBoxRok.SelectedItem;
 
-            // Pobierz nazwę wybranego miesiąca
             string selectedMonthName = comboBoxMiesiac.SelectedItem.ToString();
 
-            // Zamień nazwę miesiąca na liczbę
             int selectedMonth = DateTime.ParseExact(selectedMonthName, "MMMM", CultureInfo.CurrentCulture).Month;
 
             int currentDay = 1;
@@ -32,10 +29,8 @@ namespace RestaurantManagement
             {
                 currentDay = DateTime.Now.Day;
             }
-            // Oblicz liczbę dni w danym miesiącu
             int daysInMonth = DateTime.DaysInMonth(selectedYear, selectedMonth);
 
-            // Wyczyść i dodaj dni do trzeciego ComboBox
             comboBoxDzien.Items.Clear();
             for (int day = currentDay; day <= daysInMonth; day++)
             {
