@@ -16,6 +16,7 @@ namespace RestaurantManagement
 {
     public partial class Rezerwacje : Form
     {
+        private Button selectedButton;
         ImageWithDescription imageWithDescription = new ImageWithDescription();
         Helper helper = new Helper();
         List<ZamowienieElement> listaZamowien = new List<ZamowienieElement>();
@@ -24,6 +25,12 @@ namespace RestaurantManagement
         {
             InitializeComponent();
             InitializePanels(3, 50, 100);
+
+            selectedButton = buttonNaMiejscu;
+            selectedButton.BackColor = Color.LightGreen;
+
+            textBoxAdres.Enabled = false;
+            textBoxNumerTelefonu.Enabled = false;
         }
 
         private void InitializePanels(int numberOfPanels, int startX, int startY)
@@ -53,7 +60,7 @@ namespace RestaurantManagement
                 Button button = new Button();
                 button.BackgroundImage = item.image;
                 button.BackgroundImageLayout = ImageLayout.Stretch;
-                button.Size = new Size(140, 100); 
+                button.Size = new Size(140, 100);
 
                 // Label
                 Label descLabel = new Label();
@@ -75,9 +82,9 @@ namespace RestaurantManagement
         {
             // Kontener popup
             Form popupForm = new Form();
-            popupForm.Size = new Size(220, 200); 
+            popupForm.Size = new Size(220, 200);
             popupForm.StartPosition = FormStartPosition.CenterParent;
-            popupForm.FormBorderStyle = FormBorderStyle.None; 
+            popupForm.FormBorderStyle = FormBorderStyle.None;
             popupForm.MaximizeBox = false;
             popupForm.BackColor = Color.Silver;
 
@@ -86,9 +93,9 @@ namespace RestaurantManagement
             numericUpDown.Size = new Size(200, 30);
             numericUpDown.Location = new Point(10, 10);
             numericUpDown.Minimum = 1;
-            numericUpDown.Maximum = 20; 
-            numericUpDown.ReadOnly = true; 
-            numericUpDown.Font = new Font(numericUpDown.Font.FontFamily, 18); 
+            numericUpDown.Maximum = 20;
+            numericUpDown.ReadOnly = true;
+            numericUpDown.Font = new Font(numericUpDown.Font.FontFamily, 18);
 
             // Button Zatwierdź
             Button confirmButton = new Button();
@@ -97,27 +104,27 @@ namespace RestaurantManagement
             confirmButton.Location = new Point(10, numericUpDown.Bottom + 10);
             confirmButton.Click += (sender, e) =>
             {
-                int selectedValue = (int)numericUpDown.Value; 
+                int selectedValue = (int)numericUpDown.Value;
                 DodajZamowienieDoListy(productName, selectedValue);
                 popupForm.Close();
             };
-            confirmButton.Font = new Font(confirmButton.Font.FontFamily, 14); 
-            confirmButton.BackColor = Color.LightGreen; 
+            confirmButton.Font = new Font(confirmButton.Font.FontFamily, 14);
+            confirmButton.BackColor = Color.LightGreen;
 
             // Button Anuluj
             Button cancelButton = new Button();
             cancelButton.Text = "Anuluj";
             cancelButton.Size = new Size(200, 60);
             cancelButton.Location = new Point(10, confirmButton.Bottom + 10);
-            cancelButton.Click += (sender, e) => popupForm.Close(); 
-            cancelButton.Font = new Font(cancelButton.Font.FontFamily, 14); 
-            cancelButton.BackColor = Color.LightCoral; 
+            cancelButton.Click += (sender, e) => popupForm.Close();
+            cancelButton.Font = new Font(cancelButton.Font.FontFamily, 14);
+            cancelButton.BackColor = Color.LightCoral;
 
             popupForm.Controls.Add(numericUpDown);
             popupForm.Controls.Add(confirmButton);
             popupForm.Controls.Add(cancelButton);
 
-            popupForm.ShowDialog(); 
+            popupForm.ShowDialog();
         }
 
         private void DodajZamowienieDoListy(string nazwaProduktu, int ilosc)
@@ -133,6 +140,7 @@ namespace RestaurantManagement
             listaZamowien.Add(zamowienie);
 
             RefreshDataGridView();
+            RefreshLabel();
         }
 
         private void RefreshDataGridView()
@@ -141,6 +149,15 @@ namespace RestaurantManagement
             dataGridViewPodsumowanie.DataSource = listaZamowien.Select(z => z.ZamowienieElementDGV).ToList();
         }
 
+        private void RefreshLabel()
+        {
+            double newsum = 0;
+            foreach (ZamowienieElement item in listaZamowien)
+            {
+                newsum += item.produkt_cena * item.produkt_ilosc;
+            }
+            labelSuma.Text = newsum.ToString("0.00") + " zł";
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -166,6 +183,49 @@ namespace RestaurantManagement
             Form main = new Main();
             Hide();
             main.Show();
+        }
+
+        private void buttonNaMiejscu_Click(object sender, EventArgs e)
+        {
+            buttonNaMiejscu.BackColor = Color.LightGreen;
+
+            if (selectedButton != null && selectedButton != buttonNaMiejscu)
+            {
+                selectedButton.BackColor = SystemColors.Control;
+            }
+
+            selectedButton = buttonNaMiejscu;
+            textBoxAdres.Enabled = false;
+            textBoxNumerTelefonu.Enabled = false;
+        }
+
+        private void buttonNaWynos_Click(object sender, EventArgs e)
+        {
+            buttonNaWynos.BackColor = Color.LightGreen;
+
+            if (selectedButton != null && selectedButton != buttonNaWynos)
+            {
+                selectedButton.BackColor = SystemColors.Control;
+            }
+
+            selectedButton = buttonNaWynos;
+            textBoxAdres.Enabled = true;
+            textBoxNumerTelefonu.Enabled = true;
+        }
+
+        private void textBoxAdres_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxAdres_Click(object sender, EventArgs e)
+        {
+            helper.OpenOnScreenKeyboard();
+        }
+
+        private void textBoxNumerTelefonu_Click(object sender, EventArgs e)
+        {
+            helper.OpenOnScreenKeyboard();
         }
     }
 }
