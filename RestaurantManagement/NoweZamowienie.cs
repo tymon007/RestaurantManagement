@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestaurantManagement.Helpers;
 using RestaurantManagement.Models;
-using static RestaurantManagement.Models.DataGridViewModels;
+using static RestaurantManagement.Models.Zamowienia;
 
 namespace RestaurantManagement
 {
-    public partial class Rezerwacje : Form
+    public partial class NoweZamowienie : Form
     {
         private Button selectedButton;
         ImageWithDescription imageWithDescription = new ImageWithDescription();
         Helper helper = new Helper();
         List<ZamowienieElement> listaZamowien = new List<ZamowienieElement>();
 
-        public Rezerwacje()
+        public NoweZamowienie()
         {
             InitializeComponent();
             InitializePanels(3, 50, 100);
@@ -146,7 +146,7 @@ namespace RestaurantManagement
         private void RefreshDataGridView()
         {
             dataGridViewPodsumowanie.DataSource = null;
-            dataGridViewPodsumowanie.DataSource = listaZamowien.Select(z => z.ZamowienieElementDGV).ToList();
+            dataGridViewPodsumowanie.DataSource = listaZamowien.Select(z => z.DataGridViewModel).ToList();
         }
 
         private void RefreshLabel()
@@ -173,6 +173,7 @@ namespace RestaurantManagement
             if (dataGridViewPodsumowanie.CurrentCell.RowIndex == -1)
             {
                 MessageBox.Show("Prosze wybrac pozycje do usuniecia");
+                return;
             }
             listaZamowien.RemoveAt(dataGridViewPodsumowanie.CurrentCell.RowIndex);
             RefreshDataGridView();

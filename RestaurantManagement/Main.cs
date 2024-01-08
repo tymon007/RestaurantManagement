@@ -34,8 +34,8 @@ namespace RestaurantManagement
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form Order = new Order();
-            Order.Show();
+            Form noweZamowienie = new NoweZamowienie();
+            noweZamowienie.Show();
         }
 
         private void button_logout_Click(object sender, EventArgs e)
@@ -57,9 +57,7 @@ namespace RestaurantManagement
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form rezerwacje = new Rezerwacje();
-            Hide();
-            rezerwacje.Show();
+
         }
 
         private void button3_Click(object sender, EventArgs e)

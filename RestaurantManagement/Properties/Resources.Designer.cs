@@ -143,6 +143,16 @@ namespace RestaurantManagement.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap magnifier {
+            get {
+                object obj = ResourceManager.GetObject("magnifier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nick_karvounis_Ciqxn7FE4vE_unsplash {
             get {
                 object obj = ResourceManager.GetObject("nick-karvounis-Ciqxn7FE4vE-unsplash", resourceCulture);

@@ -15,51 +15,8 @@ namespace RestaurantManagement
     public partial class Grafik : Form
     {
         Helper helper = new Helper();
+        DayPicker daypicker = new DayPicker();
 
-        private void UpdateDaysComboBox()
-        {
-            int selectedYear = (int)comboBoxRok.SelectedItem;
-
-            string selectedMonthName = comboBoxMiesiac.SelectedItem.ToString();
-
-            int selectedMonth = DateTime.ParseExact(selectedMonthName, "MMMM", CultureInfo.CurrentCulture).Month;
-
-            int currentDay = 1;
-            if (selectedMonth == DateTime.Now.Month && selectedYear == DateTime.Now.Year)
-            {
-                currentDay = DateTime.Now.Day;
-            }
-            int daysInMonth = DateTime.DaysInMonth(selectedYear, selectedMonth);
-
-            comboBoxDzien.Items.Clear();
-            for (int day = currentDay; day <= daysInMonth; day++)
-            {
-                comboBoxDzien.Items.Add(day);
-            }
-        }
-        private void UpdateMonthsComboBox()
-        {
-            comboBoxDzien.Items.Clear();
-            comboBoxMiesiac.Items.Clear();
-            int selectedYear = (int)comboBoxRok.SelectedItem;
-            int currentYear = DateTime.Now.Year;
-            int currentMonth = DateTime.Now.Month;
-
-            if (selectedYear == currentYear)
-            {
-                for (int monthToAdd = currentMonth; monthToAdd <= 12; monthToAdd++)
-                {
-                    comboBoxMiesiac.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthToAdd));
-                }
-            }
-            else
-            {
-                for (int month = 1; month <= 12; month++)
-                {
-                    comboBoxMiesiac.Items.Add(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month));
-                }
-            }
-        }
         public Grafik()
         {
             InitializeComponent();
@@ -105,13 +62,13 @@ namespace RestaurantManagement
         private void comboBoxMiesiac_SelectedIndexChanged(object sender, EventArgs e)
         {
             panelCzasPracy.Hide();
-            UpdateDaysComboBox();
+            daypicker.UpdateDaysComboBox(comboBoxRok,comboBoxMiesiac,comboBoxDzien);
         }
 
         private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
         {
             panelCzasPracy.Hide();
-            UpdateMonthsComboBox();
+            daypicker.UpdateMonthsComboBox(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
         }
 
         private void comboBoxDzien_SelectedIndexChanged(object sender, EventArgs e)

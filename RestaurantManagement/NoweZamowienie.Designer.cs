@@ -1,6 +1,6 @@
 ﻿namespace RestaurantManagement
 {
-    partial class Rezerwacje
+    partial class NoweZamowienie
     {
         /// <summary>
         /// Required designer variable.

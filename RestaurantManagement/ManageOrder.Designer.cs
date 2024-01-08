@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label_welcome = new Label();
             button_logout = new Button();
@@ -43,11 +44,13 @@
             namiejscu = new DataGridViewCheckBoxColumn();
             Stolik = new DataGridViewTextBoxColumn();
             Adres = new DataGridViewTextBoxColumn();
-            dateTimePicker1 = new DateTimePicker();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            buttonNaMiejscu = new Button();
+            buttonNaWynos = new Button();
+            buttonGotowe = new Button();
+            buttonUsun = new Button();
+            buttonZrealizowano = new Button();
+            buttonNieZrealizowano = new Button();
+            buttonFiltruj = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -100,48 +103,73 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = SystemColors.ControlDarkDark;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DataZ, GodzinaZ, GodzinaR, Zrealizowano, Pozycje, Wartość, namiejscu, Stolik, Adres });
-            dataGridView1.Location = new Point(52, 180);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView1.Location = new Point(0, 184);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(904, 755);
+            dataGridView1.ScrollBars = ScrollBars.Vertical;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ShowCellErrors = false;
+            dataGridView1.ShowCellToolTips = false;
+            dataGridView1.ShowEditingIcon = false;
+            dataGridView1.ShowRowErrors = false;
+            dataGridView1.Size = new Size(1020, 836);
             dataGridView1.TabIndex = 7;
             // 
             // DataZ
             // 
             DataZ.HeaderText = "Data złożenia";
             DataZ.Name = "DataZ";
+            DataZ.ReadOnly = true;
             // 
             // GodzinaZ
             // 
             GodzinaZ.HeaderText = "Godzina złożenia";
             GodzinaZ.Name = "GodzinaZ";
+            GodzinaZ.ReadOnly = true;
             // 
             // GodzinaR
             // 
             GodzinaR.HeaderText = "Godzina realizacji";
             GodzinaR.Name = "GodzinaR";
+            GodzinaR.ReadOnly = true;
             // 
             // Zrealizowano
             // 
             Zrealizowano.HeaderText = "Zrealizowano";
             Zrealizowano.Name = "Zrealizowano";
+            Zrealizowano.ReadOnly = true;
             // 
             // Pozycje
             // 
             Pozycje.HeaderText = "Pozycje zamówienia";
             Pozycje.Name = "Pozycje";
+            Pozycje.ReadOnly = true;
             Pozycje.Resizable = DataGridViewTriState.True;
             Pozycje.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
@@ -149,6 +177,7 @@
             // 
             Wartość.HeaderText = "Wartość";
             Wartość.Name = "Wartość";
+            Wartość.ReadOnly = true;
             Wartość.Resizable = DataGridViewTriState.True;
             Wartość.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
@@ -156,11 +185,13 @@
             // 
             namiejscu.HeaderText = "Na miejscu";
             namiejscu.Name = "namiejscu";
+            namiejscu.ReadOnly = true;
             // 
             // Stolik
             // 
             Stolik.HeaderText = "Stolik";
             Stolik.Name = "Stolik";
+            Stolik.ReadOnly = true;
             Stolik.Resizable = DataGridViewTriState.True;
             Stolik.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
@@ -168,76 +199,115 @@
             // 
             Adres.HeaderText = "Adres";
             Adres.Name = "Adres";
+            Adres.ReadOnly = true;
             // 
-            // dateTimePicker1
+            // buttonNaMiejscu
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(52, 124);
-            dateTimePicker1.MinimumSize = new Size(300, 50);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(342, 50);
-            dateTimePicker1.TabIndex = 9;
+            buttonNaMiejscu.BackColor = Color.White;
+            buttonNaMiejscu.FlatStyle = FlatStyle.Flat;
+            buttonNaMiejscu.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonNaMiejscu.ForeColor = Color.Black;
+            buttonNaMiejscu.Location = new Point(246, 105);
+            buttonNaMiejscu.Name = "buttonNaMiejscu";
+            buttonNaMiejscu.Size = new Size(125, 40);
+            buttonNaMiejscu.TabIndex = 10;
+            buttonNaMiejscu.Text = "Na miejscu";
+            buttonNaMiejscu.UseVisualStyleBackColor = true;
+            buttonNaMiejscu.Click += buttonNaMiejscu_Click;
             // 
-            // button1
+            // buttonNaWynos
             // 
-            button1.BackColor = Color.White;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(400, 124);
-            button1.Name = "button1";
-            button1.Size = new Size(117, 51);
-            button1.TabIndex = 10;
-            button1.Text = "Na miejscu";
-            button1.UseVisualStyleBackColor = false;
+            buttonNaWynos.BackColor = Color.White;
+            buttonNaWynos.FlatStyle = FlatStyle.Flat;
+            buttonNaWynos.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonNaWynos.Location = new Point(371, 105);
+            buttonNaWynos.Name = "buttonNaWynos";
+            buttonNaWynos.Size = new Size(125, 40);
+            buttonNaWynos.TabIndex = 11;
+            buttonNaWynos.Text = "Na wynos";
+            buttonNaWynos.UseVisualStyleBackColor = true;
+            buttonNaWynos.Click += buttonNaWynos_Click;
             // 
-            // button2
+            // buttonGotowe
             // 
-            button2.BackColor = Color.White;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(523, 124);
-            button2.Name = "button2";
-            button2.Size = new Size(130, 51);
-            button2.TabIndex = 11;
-            button2.Text = "Na wynos";
-            button2.UseVisualStyleBackColor = false;
+            buttonGotowe.BackColor = Color.LightGreen;
+            buttonGotowe.FlatStyle = FlatStyle.Flat;
+            buttonGotowe.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonGotowe.ForeColor = Color.Black;
+            buttonGotowe.Location = new Point(246, 145);
+            buttonGotowe.Name = "buttonGotowe";
+            buttonGotowe.Size = new Size(250, 40);
+            buttonGotowe.TabIndex = 12;
+            buttonGotowe.Text = "Oznacz jako gotowe";
+            buttonGotowe.UseVisualStyleBackColor = false;
+            buttonGotowe.Click += buttonGotowe_Click;
             // 
-            // button3
+            // buttonUsun
             // 
-            button3.BackColor = Color.ForestGreen;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(659, 123);
-            button3.Name = "button3";
-            button3.Size = new Size(150, 51);
-            button3.TabIndex = 12;
-            button3.Text = "Gotowe";
-            button3.UseVisualStyleBackColor = false;
+            buttonUsun.BackColor = Color.LightCoral;
+            buttonUsun.FlatStyle = FlatStyle.Flat;
+            buttonUsun.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonUsun.ForeColor = Color.Black;
+            buttonUsun.Location = new Point(496, 145);
+            buttonUsun.Name = "buttonUsun";
+            buttonUsun.Size = new Size(125, 40);
+            buttonUsun.TabIndex = 13;
+            buttonUsun.Text = "Usuń";
+            buttonUsun.UseVisualStyleBackColor = false;
+            buttonUsun.Click += buttonUsun_Click;
             // 
-            // button4
+            // buttonZrealizowano
             // 
-            button4.BackColor = Color.OrangeRed;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(806, 123);
-            button4.Name = "button4";
-            button4.Size = new Size(150, 51);
-            button4.TabIndex = 13;
-            button4.Text = "Usuń";
-            button4.UseVisualStyleBackColor = false;
+            buttonZrealizowano.BackColor = Color.White;
+            buttonZrealizowano.FlatStyle = FlatStyle.Flat;
+            buttonZrealizowano.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonZrealizowano.Location = new Point(496, 105);
+            buttonZrealizowano.Name = "buttonZrealizowano";
+            buttonZrealizowano.Size = new Size(125, 40);
+            buttonZrealizowano.TabIndex = 14;
+            buttonZrealizowano.Text = "Zrealizowano";
+            buttonZrealizowano.UseVisualStyleBackColor = true;
+            buttonZrealizowano.Click += buttonZrealizowano_Click;
+            // 
+            // buttonNieZrealizowano
+            // 
+            buttonNieZrealizowano.BackColor = Color.White;
+            buttonNieZrealizowano.FlatStyle = FlatStyle.Flat;
+            buttonNieZrealizowano.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonNieZrealizowano.Location = new Point(621, 105);
+            buttonNieZrealizowano.Name = "buttonNieZrealizowano";
+            buttonNieZrealizowano.Size = new Size(155, 40);
+            buttonNieZrealizowano.TabIndex = 35;
+            buttonNieZrealizowano.Text = "Nie zrealizowano";
+            buttonNieZrealizowano.UseVisualStyleBackColor = true;
+            buttonNieZrealizowano.Click += buttonNieZrealizowano_Click;
+            // 
+            // buttonFiltruj
+            // 
+            buttonFiltruj.BackColor = Color.Bisque;
+            buttonFiltruj.FlatStyle = FlatStyle.Flat;
+            buttonFiltruj.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonFiltruj.Location = new Point(621, 145);
+            buttonFiltruj.Name = "buttonFiltruj";
+            buttonFiltruj.Size = new Size(155, 40);
+            buttonFiltruj.TabIndex = 36;
+            buttonFiltruj.Text = "Filtruj";
+            buttonFiltruj.UseVisualStyleBackColor = false;
+            buttonFiltruj.Click += buttonFiltruj_Click;
             // 
             // ManageOrder
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(1020, 1020);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(buttonFiltruj);
+            Controls.Add(buttonNieZrealizowano);
+            Controls.Add(buttonZrealizowano);
+            Controls.Add(buttonUsun);
+            Controls.Add(buttonGotowe);
+            Controls.Add(buttonNaWynos);
+            Controls.Add(buttonNaMiejscu);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -245,6 +315,7 @@
             Name = "ManageOrder";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ManageOrder";
+            Load += ManageOrder_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -267,10 +338,12 @@
         private DataGridViewCheckBoxColumn namiejscu;
         private DataGridViewTextBoxColumn Stolik;
         private DataGridViewTextBoxColumn Adres;
-        private DateTimePicker dateTimePicker1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button buttonNaMiejscu;
+        private Button buttonNaWynos;
+        private Button buttonGotowe;
+        private Button buttonUsun;
+        private Button buttonZrealizowano;
+        private Button buttonNieZrealizowano;
+        private Button buttonFiltruj;
     }
 }
