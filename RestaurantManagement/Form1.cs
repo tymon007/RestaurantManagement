@@ -1,4 +1,4 @@
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using RestaurantManagement.Helpers;
 namespace RestaurantManagement
 {
@@ -21,9 +21,25 @@ namespace RestaurantManagement
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form Main = new Main();
-            Main.Show();
+            string username = textBox1.Text;
+            string password = textBox2.Text;
+
+            DatabaseHandler dbHandler = new DatabaseHandler();
+
+            if (dbHandler.ValidateLogin(username, password))
+            {
+                
+                this.Hide();
+                Form Main = new Main();
+                Main.Show();
+            }
+            else
+            {
+                MessageBox.Show("Niepoprawny login lub hasło.");
+            }
+
+
+
         }
 
         private void textBox1_Click(object sender, EventArgs e)
