@@ -23,6 +23,7 @@ namespace RestaurantManagement
             InitializeComponent();
             buttonGotowe.Visible = false;
             buttonUsun.Visible = false;
+            buttonWyslano.Visible = false;
         }
 
         private void button_logout_Click(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace RestaurantManagement
                 return;
             }
             selectedButtonMiejsceWynos = buttonNaMiejscu;
-            selectedButtonMiejsceWynos.BackColor = Color.LightGreen;
+            selectedButtonMiejsceWynos.BackColor = Color.Silver;
             buttonNaWynos.BackColor = Color.White;
 
         }
@@ -60,7 +61,7 @@ namespace RestaurantManagement
                 return;
             }
             selectedButtonMiejsceWynos = buttonNaWynos;
-            selectedButtonMiejsceWynos.BackColor = Color.LightGreen;
+            selectedButtonMiejsceWynos.BackColor = Color.Silver;
             buttonNaMiejscu.BackColor = Color.White;
         }
 
@@ -73,7 +74,7 @@ namespace RestaurantManagement
                 return;
             }
             selectedButtonZrealizowanoNieZrealizowano = buttonZrealizowano;
-            selectedButtonZrealizowanoNieZrealizowano.BackColor = Color.LightGreen;
+            selectedButtonZrealizowanoNieZrealizowano.BackColor = Color.Silver;
             buttonNieZrealizowano.BackColor = Color.White;
         }
 
@@ -86,7 +87,7 @@ namespace RestaurantManagement
                 return;
             }
             selectedButtonZrealizowanoNieZrealizowano = buttonNieZrealizowano;
-            selectedButtonZrealizowanoNieZrealizowano.BackColor = Color.LightGreen;
+            selectedButtonZrealizowanoNieZrealizowano.BackColor = Color.Silver;
             buttonZrealizowano.BackColor = Color.White;
         }
 
@@ -101,11 +102,13 @@ namespace RestaurantManagement
                 //funkcja pobierajaca dane z bazy do dgv 
                 buttonGotowe.Show();
                 buttonUsun.Show();
+                buttonWyslano.Show();
             }
             else
             {
                 buttonGotowe.Hide();
                 buttonUsun.Hide();
+                buttonWyslano.Hide();
             }
 
         }

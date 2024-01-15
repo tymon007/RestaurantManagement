@@ -41,7 +41,7 @@ namespace RestaurantManagement
         private void button_logout_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form Form1 = new Form1();
+            Form Form1 = new FormLogin();
             Form1.Show();
         }
 
@@ -57,7 +57,9 @@ namespace RestaurantManagement
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form Rezerwacje = new Rezerwacje();
+            Hide();
+            Rezerwacje.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -346,7 +346,7 @@
             label14.TabIndex = 28;
             label14.Text = "Dzień:";
             // 
-            // Profil
+            // Grafik
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -365,7 +365,7 @@
             Controls.Add(panel1);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Profil";
+            Name = "Grafik";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Profil";
             Load += Profil_Load_1;

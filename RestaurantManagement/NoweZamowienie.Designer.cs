@@ -115,7 +115,7 @@
             // 
             // button_logout
             // 
-            button_logout.BackgroundImage = Properties.Resources.logout;
+            button_logout.BackgroundImage = Properties.Resources.pngaaa_com_3832011;
             button_logout.BackgroundImageLayout = ImageLayout.Zoom;
             button_logout.FlatStyle = FlatStyle.Flat;
             button_logout.ForeColor = SystemColors.ControlText;
@@ -148,6 +148,7 @@
             buttonSubmit.TabIndex = 7;
             buttonSubmit.Text = "Złóż zamówienie";
             buttonSubmit.UseVisualStyleBackColor = false;
+            buttonSubmit.Click += buttonSubmit_Click;
             // 
             // buttonUsun
             // 
@@ -265,7 +266,7 @@
             textBoxNumerTelefonu.TabIndex = 14;
             textBoxNumerTelefonu.Click += textBoxNumerTelefonu_Click;
             // 
-            // Rezerwacje
+            // NoweZamowienie
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -281,7 +282,7 @@
             Controls.Add(panel1);
             Controls.Add(dataGridViewPodsumowanie);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Rezerwacje";
+            Name = "NoweZamowienie";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rezerwacje";
             ((System.ComponentModel.ISupportInitialize)dataGridViewPodsumowanie).EndInit();

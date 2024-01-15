@@ -28,7 +28,7 @@ namespace RestaurantManagement
             dateTimePickerDo.Format = DateTimePickerFormat.Custom;
             dateTimePickerDo.CustomFormat = "HH:mm";
 
-            helper.SetTimePickers(dateTimePickerOd, dateTimePickerDo);
+            helper.SetTimePickers(dateTimePickerOd, dateTimePickerDo, 8);
 
             panelCzasPracy.Hide();
             comboBoxRok.Items.Add(DateTime.Now.Year);
@@ -62,7 +62,7 @@ namespace RestaurantManagement
         private void comboBoxMiesiac_SelectedIndexChanged(object sender, EventArgs e)
         {
             panelCzasPracy.Hide();
-            daypicker.UpdateDaysComboBox(comboBoxRok,comboBoxMiesiac,comboBoxDzien);
+            daypicker.UpdateDaysComboBox(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
         }
 
         private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,13 +84,11 @@ namespace RestaurantManagement
                 comboBoxDzien.SelectedItem = null;
                 return;
             }
-
-            //Przekonwertowanie roku, miesiaca, dnia z comboboxow na format daty obslugiwany przez baze danych
             //Pobranie danych z bazy danych dla wybranej daty:
             //  - status 
             //  - godzina od
             //  - godzina do
-            // i wpierdolenie ich do przypisanych im formatek
+            // i  ich do przypisanych im formatek
         }
 
         private void comboBoxMiesiac_Click(object sender, EventArgs e)
@@ -125,7 +123,7 @@ namespace RestaurantManagement
                 if (dateTimePickerOd.Value >= dateTimePickerDo.Value)
                 {
                     MessageBox.Show("Niepoprawny czas pracy");
-                    helper.SetTimePickers(dateTimePickerOd, dateTimePickerDo);
+                    helper.SetTimePickers(dateTimePickerOd, dateTimePickerDo, 8);
                     return;
                 }
                 //wyslanie danych do bazy

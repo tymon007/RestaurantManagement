@@ -31,10 +31,10 @@ namespace RestaurantManagement.Helpers
             }
         }
 
-        public void SetTimePickers(DateTimePicker timepicker1, DateTimePicker timepicker2)
+        public void SetTimePickers(DateTimePicker timepicker1, DateTimePicker timepicker2, int timeDifference)
         {
             timepicker1.Value = DateTime.Now;
-            timepicker2.Value = DateTime.Now.AddHours(8);
+            timepicker2.Value = DateTime.Now.AddHours(timeDifference);
         }
 
         public void GenerateImagesWithDescription(int Count, List<ImageWithDescription> list)

@@ -23,30 +23,65 @@ namespace RestaurantManagement.Models
                 Cena = produkt_cena + " zł",
                 Suma = produkt_ilosc*produkt_cena + " zł"
             };
+
+            public override string ToString()
+            {
+                return $"{produkt_nazwa} | {produkt_ilosc} | {produkt_ilosc*produkt_cena} zł";
+            }
         }
         public class ZarzadzanieZamowieniami
         {
+            public enum StatusZamowienia 
+            {
+                Przyjete = 0,
+                Zrealizowane = 1,
+                Wyslane = 2,
+            }
+
+            public int IDZamowienia;
+            public StatusZamowienia Status;
             public DateTime DataZlozenia;
-            public DateTime GodzinaRealizacji;
-            public bool Zrealizowano;
+            public DateTime? GodzinaRealizacji;
             public List<ZamowienieElement> PozycjeZamowienia;
-            public double Wartosc;
             public bool NaMiejscu;
-            public string? Stolik;
             public string? Adres;
 
             public object DataGridViewModel => new
             {
                 DataZlozenia = DataZlozenia.ToString("MM:dd"),
                 GodzinaZlozenia = DataZlozenia.ToString("t"),
-                GodzinaRealizacji = GodzinaRealizacji.ToString("t"),
-                Zrealizowano = Zrealizowano, //!!!Przy robieniu funkcji wyswietlajacej to pole obiektu w dgv trzeba bedzie true i false zamienic na Zrealizowano i Nie zrealizowano
+                GodzinaRealizacji = GodzinaRealizacji.HasValue ? GodzinaRealizacji.Value.ToString("t") : string.Empty, 
                 PozycjeZamowienia = PozycjeZamowienia,
-                Wartosc = Wartosc,
                 NaMiejscu = NaMiejscu, //!!!Przy robieniu funkcji wyswietlajacej to pole obiektu w dgv trzeba bedzie true i false zamienic na Na miejscu i Na wynos
-                Stolik = Stolik,
                 Adres = Adres,
             };
+            private string MiejsceWynos()
+            {
+                if (NaMiejscu == true)
+                {
+                    return "Na miejscu";
+                }
+                return $"Na wynos. Adres: {Adres}";
+            }
+            private (string pozycjeZamowienia, string wartoscZamowienia) PolaczPozycjeZamówienia()
+            {
+                StringBuilder pozycjeZamowienia = new StringBuilder();
+                double wartoscZamowienia = 0;
+
+                foreach (ZamowienieElement item in PozycjeZamowienia)
+                {
+                    pozycjeZamowienia.AppendLine(item.ToString());
+                    wartoscZamowienia += item.produkt_cena * item.produkt_ilosc;
+                }
+
+                return (pozycjeZamowienia.ToString(), wartoscZamowienia.ToString("00.00"));
+            }
+            public override string ToString()
+            {
+                return $"Data złożenia: {DataZlozenia.ToString("dd:MM:yyyy  HH:mm")}\n" +
+                    MiejsceWynos() + "\n" + PolaczPozycjeZamówienia().pozycjeZamowienia + "\n" + 
+                    "Wartość zamówienia: " + PolaczPozycjeZamówienia().wartoscZamowienia + " zł";
+            }
         }
     }
 }

@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using RestaurantManagement.Helpers;
 using RestaurantManagement.Models;
 using static RestaurantManagement.Models.Zamowienia;
+using System.Security.Policy;
+using System.Web;
 
 namespace RestaurantManagement
 {
@@ -27,7 +29,7 @@ namespace RestaurantManagement
             InitializePanels(3, 50, 100);
 
             selectedButton = buttonNaMiejscu;
-            selectedButton.BackColor = Color.LightGreen;
+            selectedButton.BackColor = Color.Silver;
 
             textBoxAdres.Enabled = false;
             textBoxNumerTelefonu.Enabled = false;
@@ -109,7 +111,7 @@ namespace RestaurantManagement
                 popupForm.Close();
             };
             confirmButton.Font = new Font(confirmButton.Font.FontFamily, 14);
-            confirmButton.BackColor = Color.LightGreen;
+            confirmButton.BackColor = Color.Silver;
 
             // Button Anuluj
             Button cancelButton = new Button();
@@ -188,7 +190,7 @@ namespace RestaurantManagement
 
         private void buttonNaMiejscu_Click(object sender, EventArgs e)
         {
-            buttonNaMiejscu.BackColor = Color.LightGreen;
+            buttonNaMiejscu.BackColor = Color.Silver;
 
             if (selectedButton != null && selectedButton != buttonNaMiejscu)
             {
@@ -202,7 +204,7 @@ namespace RestaurantManagement
 
         private void buttonNaWynos_Click(object sender, EventArgs e)
         {
-            buttonNaWynos.BackColor = Color.LightGreen;
+            buttonNaWynos.BackColor = Color.Silver;
 
             if (selectedButton != null && selectedButton != buttonNaWynos)
             {
@@ -227,6 +229,42 @@ namespace RestaurantManagement
         private void textBoxNumerTelefonu_Click(object sender, EventArgs e)
         {
             helper.OpenOnScreenKeyboard();
+        }
+
+        private void buttonSubmit_Click(object sender, EventArgs e)
+        {
+            if(listaZamowien.Count == 0)
+            {
+                MessageBox.Show("Brak pozycji zamowienia");
+                return;
+            }
+
+            //wyslanie query do bazy zeby otrzymac id zamowienia. Baza ma zwrocic id zamowienia i czy sie udalo zlozyc 
+            int idZamowienia = 945068908;
+            bool successful = true;
+
+            bool naMiejscu = true;
+            string adres = string.Empty;
+            if (selectedButton == buttonNaWynos)
+            {
+                naMiejscu = false;
+                adres = textBoxAdres.Text;
+            }
+
+
+            if (successful)
+            {
+                ZarzadzanieZamowieniami zamowienie = new ZarzadzanieZamowieniami();
+
+                zamowienie.IDZamowienia = idZamowienia;
+                zamowienie.Status = ZarzadzanieZamowieniami.StatusZamowienia.Przyjete;
+                zamowienie.DataZlozenia = DateTime.Now;
+                zamowienie.PozycjeZamowienia = listaZamowien;
+                zamowienie.NaMiejscu = naMiejscu;
+                zamowienie.Adres = adres;
+
+                MessageBox.Show("Podsumowanie zamówienia: \n\n" + zamowienie.ToString());
+            }
         }
     }
 }
