@@ -7,6 +7,8 @@ using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Net;
 using System.Windows.Forms;
+using static RestaurantManagement.Models.Zamowienia;
+using System.Data;
 
 
 
@@ -127,6 +129,91 @@ namespace RestaurantManagement
             }
 
             return menuItems;
+        }
+        public List<ZarzadzanieZamowieniami> GetZamowienia()
+        {
+            List<ZarzadzanieZamowieniami> zamowienia = new List<ZarzadzanieZamowieniami>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer FROM rm_zamowienie";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ZarzadzanieZamowieniami zamowienie = new ZarzadzanieZamowieniami
+                            {
+                                IDZamowienia = reader.GetInt32("Zamowienie_Id"),
+                                Cena = reader.GetDouble("Zamowienie_Cena"),
+                                Status_zamowienia = reader.GetString("Zamowienie_Status"),
+                                DataZlozenia = reader.GetDateTime("Zamowienie_Data"),
+                                User = reader.GetInt32("User_Id"),
+                                Adres = reader.GetString("Adres_Id"),
+                                NumerZamowienia = reader.GetInt32("Miejsce_Numer")
+                            };
+                            zamowienia.Add(zamowienie);
+                        } 
+                    }
+                }
+                
+                    return zamowienia;
+            }
+        }
+
+        public DataTable GetDishesData()
+        {
+            DataTable dataTable = new DataTable();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT  Zamowienie_Data, Zamowienie_Cena, Miejsce_Numer, A.Adres_Ulica  FROM rm_zamowienie AS Z" +
+                    " INNER JOIN rm_adres as A ON A.Adres_Id = Z.Adres_Id" ;
+                //"SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer FROM rm_zamowienie";
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+
+            return dataTable;
+        }
+
+        public int DodajZamowienie(decimal cena, string status, DateTime data, int userId, int adresId, string miejsceNumer)
+        {
+            int noweZamowienieId = -1;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "INSERT INTO rm_zamowienie (Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer) " +
+                               "VALUES (@Cena, @Status, @Data, @UserId, @AdresId, @MiejsceNumer); " +
+                               "SELECT LAST_INSERT_ID();";  // Pobierz ostatnio przydzielony identyfikator
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    // Dodaj parametry do zabezpieczenia przed atakami SQL Injection
+                    command.Parameters.AddWithValue("@Cena", cena);
+                    command.Parameters.AddWithValue("@Status", status);
+                    command.Parameters.AddWithValue("@Data", data);
+                    command.Parameters.AddWithValue("@UserId", userId);
+                    command.Parameters.AddWithValue("@AdresId", adresId);
+                    command.Parameters.AddWithValue("@MiejsceNumer", miejsceNumer);
+
+                    // Wykonaj polecenie i uzyskaj nowy identyfikator zamówienia
+                    noweZamowienieId = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+
+            return noweZamowienieId;
         }
 
     }

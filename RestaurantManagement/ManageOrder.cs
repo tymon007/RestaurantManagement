@@ -13,6 +13,8 @@ namespace RestaurantManagement
 {
     public partial class ManageOrder : Form
     {
+        private readonly DatabaseHandler databaseHandler;
+
         ZarzadzanieZamowieniami zarzadzanieZamowieniami = new ZarzadzanieZamowieniami();
         List<ZarzadzanieZamowieniami> listaZamowien = new List<ZarzadzanieZamowieniami>();
 
@@ -21,6 +23,7 @@ namespace RestaurantManagement
         public ManageOrder()
         {
             InitializeComponent();
+            databaseHandler = new DatabaseHandler();
             buttonGotowe.Visible = false;
             buttonUsun.Visible = false;
             buttonWyslano.Visible = false;
@@ -35,6 +38,28 @@ namespace RestaurantManagement
 
         private void ManageOrder_Load(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = databaseHandler.GetDishesData();
+
+            //foreach (DataRow row in dataGridView1.Rows)
+            //{
+            //    // Map data from the database to existing columns in the DataGridView
+            //    int dishID = Convert.ToInt32(row["DishID"]);
+            //    dataGridView1.Rows.Add(
+            //        dishID,
+            //        row["DishName"].ToString(),
+            //        row["DishDescription"].ToString(),
+            //        Convert.ToDecimal(row["DishPrice"]),
+            //        GetCategoryName(Convert.ToInt32(row["CategoryID"])), // Map to existing column "Category"
+            //        GetChefName(Convert.ToInt32(row["ChefID"]))          // Map to existing column "Chef"
+            //    );
+
+            //    // Optionally modify values
+            //    if (row["DishName"].ToString().Contains("Special"))
+            //    {
+            //        // Modify the value in the "Description" column for dishes with "Special" in the name
+            //        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["Description"].Value = "Special Dish!";
+            //    }
+            //}
 
         }
 

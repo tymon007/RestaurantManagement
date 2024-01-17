@@ -284,6 +284,9 @@ namespace RestaurantManagement
             }
 
             //wyslanie query do bazy zeby otrzymac id zamowienia. Baza ma zwrocic id zamowienia i czy sie udalo zlozyc 
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            ZarzadzanieZamowieniami zamowienie1 = new ZarzadzanieZamowieniami();
+            dbHandler.DodajZamowienie(200,"Pending",DateTime.Now, 1,1,"1");
             int idZamowienia = 945068908;
             bool successful = true;
 
@@ -294,7 +297,6 @@ namespace RestaurantManagement
                 naMiejscu = false;
                 adres = textBoxAdres.Text;
             }
-
 
             if (successful)
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
@@ -44,6 +45,7 @@
             namiejscu = new DataGridViewCheckBoxColumn();
             Stolik = new DataGridViewTextBoxColumn();
             Adres = new DataGridViewTextBoxColumn();
+            zamowieniaBindingSource = new BindingSource(components);
             buttonNaMiejscu = new Button();
             buttonNaWynos = new Button();
             buttonGotowe = new Button();
@@ -54,6 +56,7 @@
             buttonWyslano = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -202,6 +205,10 @@
             Adres.Name = "Adres";
             Adres.ReadOnly = true;
             // 
+            // zamowieniaBindingSource
+            // 
+            zamowieniaBindingSource.DataSource = typeof(Models.Zamowienia);
+            // 
             // buttonNaMiejscu
             // 
             buttonNaMiejscu.BackColor = Color.White;
@@ -334,6 +341,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -361,5 +369,6 @@
         private Button buttonNieZrealizowano;
         private Button buttonFiltruj;
         private Button buttonWyslano;
+        private BindingSource zamowieniaBindingSource;
     }
 }

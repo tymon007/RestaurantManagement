@@ -39,13 +39,16 @@ namespace RestaurantManagement.Models
             }
 
             public int IDZamowienia;
-            public double Zamowienie_Cena;
+            public double Cena;
+            public string Status_zamowienia;
             public StatusZamowienia Status;
             public DateTime DataZlozenia;
             public DateTime? GodzinaRealizacji;
+            public int User;
             public List<ZamowienieElement> PozycjeZamowienia;
             public bool NaMiejscu;
             public string? Adres;
+            public int NumerZamowienia;
 
             public object DataGridViewModel => new
             {
