@@ -285,6 +285,7 @@
             Name = "NoweZamowienie";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rezerwacje";
+            Load += NoweZamowienie_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewPodsumowanie).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

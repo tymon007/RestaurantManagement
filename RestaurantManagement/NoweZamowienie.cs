@@ -13,6 +13,7 @@ using RestaurantManagement.Models;
 using static RestaurantManagement.Models.Zamowienia;
 using System.Security.Policy;
 using System.Web;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RestaurantManagement
 {
@@ -49,10 +50,40 @@ namespace RestaurantManagement
 
         private void AddButtonsWithImagesToHPanel(HorizontalScrollFlowLayoutPanel hpanel)
         {
-            List<ImageWithDescription> images = new List<ImageWithDescription>();
-            helper.GenerateImagesWithDescription(10, images);
+            //List<ImageWithDescription> images = new List<ImageWithDescription>();
+            //helper.GenerateImagesWithDescription(10, images);
+            DatabaseHandler dbHandler = new DatabaseHandler();
 
-            foreach (ImageWithDescription item in images)
+            List<MenuItem> allMenuItems = dbHandler.GetMenuItems();
+
+
+            //foreach (ImageWithDescription item in images)
+            //{
+            //    // Kontener dla obrazka i etykiety
+            //    Panel panel = new Panel();
+            //    panel.Size = new Size(140, 140);
+
+            //    // Obrazek
+            //    Button button = new Button();
+            //    button.BackgroundImage = item.image;
+            //    button.BackgroundImageLayout = ImageLayout.Stretch;
+            //    button.Size = new Size(140, 100);
+
+            //    // Label
+            //    Label descLabel = new Label();
+            //    descLabel.Text = item.description;
+            //    descLabel.Dock = DockStyle.Bottom;
+            //    descLabel.Font = new Font(descLabel.Font.FontFamily, 10);
+            //    descLabel.TextAlign = ContentAlignment.MiddleCenter;
+
+            //    button.Click += (sender, e) => ShowAdditionalControlsInPopup(panel, descLabel.Text);
+
+            //    panel.Controls.Add(button);
+            //    panel.Controls.Add(descLabel);
+
+            //    hpanel.Controls.Add(panel);
+            //}
+            foreach (MenuItem item in allMenuItems)
             {
                 // Kontener dla obrazka i etykiety
                 Panel panel = new Panel();
@@ -66,7 +97,7 @@ namespace RestaurantManagement
 
                 // Label
                 Label descLabel = new Label();
-                descLabel.Text = item.description;
+                descLabel.Text = item.name;
                 descLabel.Dock = DockStyle.Bottom;
                 descLabel.Font = new Font(descLabel.Font.FontFamily, 10);
                 descLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -131,12 +162,25 @@ namespace RestaurantManagement
 
         private void DodajZamowienieDoListy(string nazwaProduktu, int ilosc)
         {
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            int temp_id = 0;
+            double temp_cena = 0;
+            List<MenuItem> allMenuItems = dbHandler.GetMenuItems();
+            foreach (MenuItem item in allMenuItems)
+            {
+                if (item.name == nazwaProduktu)
+                {
+                    temp_id = item.id;
+                    temp_cena = item.price;
+                }
+            }
             ZamowienieElement zamowienie = new ZamowienieElement
             {
                 produkt_ilosc = ilosc,
-                produkt_id = 0, // tymczasowo
+
+                produkt_id = temp_id, // tymczasowo
                 produkt_nazwa = nazwaProduktu,
-                produkt_cena = 15.99 // tymczasowo
+                produkt_cena = temp_cena // tymczasowo
             };
 
             listaZamowien.Add(zamowienie);
@@ -233,7 +277,7 @@ namespace RestaurantManagement
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            if(listaZamowien.Count == 0)
+            if (listaZamowien.Count == 0)
             {
                 MessageBox.Show("Brak pozycji zamowienia");
                 return;
@@ -265,6 +309,11 @@ namespace RestaurantManagement
 
                 MessageBox.Show("Podsumowanie zamówienia: \n\n" + zamowienie.ToString());
             }
+        }
+
+        private void NoweZamowienie_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

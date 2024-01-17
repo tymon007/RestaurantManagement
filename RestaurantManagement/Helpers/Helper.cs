@@ -39,12 +39,12 @@ namespace RestaurantManagement.Helpers
 
         public void GenerateImagesWithDescription(int Count, List<ImageWithDescription> list)
         {
-            Image bareImage = Image.FromFile("C:\\Users\\puddi\\Documents\\GitHub\\RestaurantManagement\\RestaurantManagement\\Resources\\pngwing.com.png");
+            //Image bareImage = Image.FromFile("C:\\Users\\puddi\\Documents\\GitHub\\RestaurantManagement\\RestaurantManagement\\Resources\\pngwing.com.png");
             for (int i = 0; i < Count; i++)
             {
                 ImageWithDescription image = new ImageWithDescription();
                 image.description = $"Nazwa produktu{i}";
-                image.image = bareImage;
+                //image.image = bareImage;
                 list.Add(image);
             }
         }

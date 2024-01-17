@@ -39,6 +39,7 @@ namespace RestaurantManagement.Models
             }
 
             public int IDZamowienia;
+            public double Zamowienie_Cena;
             public StatusZamowienia Status;
             public DateTime DataZlozenia;
             public DateTime? GodzinaRealizacji;
