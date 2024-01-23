@@ -9,11 +9,9 @@ using System.Net;
 using System.Windows.Forms;
 using static RestaurantManagement.Models.Zamowienia;
 using System.Data;
+using RestaurantManagement.Models;
 
-
-
-
-namespace RestaurantManagement
+namespace RestaurantManagement.Service
 {
     internal class DatabaseHandler
     {
@@ -68,21 +66,21 @@ namespace RestaurantManagement
             }
         }
 
-        
+
 
         private Image LoadImageFromUrl(string imageUrl)
         {
             Image image = null;
             try
             {
-                
+
                 WebClient webClient = new WebClient();
                 byte[] data = webClient.DownloadData(imageUrl);
 
-                
+
                 using (MemoryStream memoryStream = new MemoryStream(data))
                 {
-                   
+
                     image = Image.FromStream(memoryStream);
                 }
             }
@@ -157,11 +155,11 @@ namespace RestaurantManagement
                                 NumerZamowienia = reader.GetInt32("Miejsce_Numer")
                             };
                             zamowienia.Add(zamowienie);
-                        } 
+                        }
                     }
                 }
-                
-                    return zamowienia;
+
+                return zamowienia;
             }
         }
 
@@ -174,7 +172,7 @@ namespace RestaurantManagement
                 connection.Open();
 
                 string query = "SELECT  Zamowienie_Data, Zamowienie_Cena, Miejsce_Numer, A.Adres_Ulica  FROM rm_zamowienie AS Z" +
-                    " INNER JOIN rm_adres as A ON A.Adres_Id = Z.Adres_Id" ;
+                    " INNER JOIN rm_adres as A ON A.Adres_Id = Z.Adres_Id";
                 //"SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer FROM rm_zamowienie";
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
