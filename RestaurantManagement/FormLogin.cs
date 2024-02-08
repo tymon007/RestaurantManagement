@@ -6,6 +6,7 @@ namespace RestaurantManagement
 {
     public partial class FormLogin : Form
     {
+        public static int loggedInUserId;
         Helper helper = new Helper();
         public FormLogin()
         {
@@ -27,8 +28,9 @@ namespace RestaurantManagement
             string password = textBox2.Text;
 
             DatabaseHandler dbHandler = new DatabaseHandler();
+            loggedInUserId = dbHandler.ValidateLogin(username, password);
 
-            if (dbHandler.ValidateLogin(username, password))
+            if (loggedInUserId != -1)
             {
 
                 this.Hide();

@@ -43,15 +43,16 @@ namespace RestaurantManagement.Service
             }
         }
 
-        public bool ValidateLogin(string username, string password)
+        public int ValidateLogin(string username, string password)
         {
             //string hashedPassword = HashPassword(password);
+            int employeeId = -1;
 
             using (MySqlConnection connection = GetConnection())
             {
                 connection.Open();
 
-                string query = "SELECT * FROM rm_users WHERE User_Login = @Username AND User_Hasło = @PasswordHash";
+                string query = "SELECT User_Id FROM rm_users WHERE User_Login = @Username AND User_Hasło = @PasswordHash";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -60,15 +61,20 @@ namespace RestaurantManagement.Service
 
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
-                        return reader.HasRows;
+                        if (reader.Read())
+                        {
+                            employeeId = reader.GetInt32("User_Id");
+                        }
                     }
                 }
+                return employeeId;
+
             }
         }
 
 
 
-        private Image LoadImageFromUrl(string imageUrl)
+        public Image LoadImageFromUrl(string imageUrl)
         {
             Image image = null;
             try
@@ -214,5 +220,42 @@ namespace RestaurantManagement.Service
             return noweZamowienieId;
         }
 
+        public Pracownik GetEmployeeById(int userId)
+        {
+            Pracownik employee = null;
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM rm_pracownik WHERE User_Id = @UserId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            
+                            employee = new Pracownik
+                            {
+                                Id = reader.GetInt32("User_Id"),
+                                Imie = reader.GetString("Imie"),
+                                Nazwisko = reader.GetString("Nazwisko"),
+                                Plec = reader.GetString("Plec"),
+                                Wiek = reader.GetInt32("Wiek"),
+                                DataRozpoczeciaPracy = reader.GetDateTime("Data_Rozpoczecia_Pracy"),
+                                LinkDoZdjecia = reader.GetString("LinkDoZdjecia")
+                                
+                            };
+                        }
+                    }
+                }
+            }
+
+            return employee;
+        }
     }
 }

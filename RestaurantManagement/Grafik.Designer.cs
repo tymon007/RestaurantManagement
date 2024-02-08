@@ -135,6 +135,7 @@
             label3.Size = new Size(307, 25);
             label3.TabIndex = 10;
             label3.Text = "Imie i nazwisko: Zygmunt Kaszanka";
+            label3.Click += label3_Click;
             // 
             // label4
             // 

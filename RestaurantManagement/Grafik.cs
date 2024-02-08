@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestaurantManagement.Helpers;
+using RestaurantManagement.Models;
+using RestaurantManagement.Service;
+
 
 namespace RestaurantManagement
 {
@@ -16,10 +19,11 @@ namespace RestaurantManagement
     {
         Helper helper = new Helper();
         DayPicker daypicker = new DayPicker();
-
+        int userId = FormLogin.loggedInUserId;
         public Grafik()
         {
             InitializeComponent();
+            
 
             dateTimePickerOd.ShowUpDown = true;
             dateTimePickerOd.Format = DateTimePickerFormat.Custom;
@@ -39,6 +43,8 @@ namespace RestaurantManagement
                 "Nieobecny",
                 "Urlop"
             });
+            
+
         }
 
         private void button_logout_Click(object sender, EventArgs e)
@@ -143,10 +149,21 @@ namespace RestaurantManagement
 
         private void Profil_Load_1(object sender, EventArgs e)
         {
-
+            DatabaseHandler db = new DatabaseHandler();
+            Pracownik employee = db.GetEmployeeById(userId);
+            label3.Text = "Imię i nazwisko: "+ employee.ToString();
+            label4.Text = "Płeć: " + employee.Plec;
+            label5.Text = "Wiek: " + employee.Wiek;
+            label7.Text = "Data rozpoczęcia pracy: " + employee.DataRozpoczeciaPracy.Value.ToString("dd-MM-yyyy");
+            panel2.BackgroundImage = db.LoadImageFromUrl(employee.LinkDoZdjecia);
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static RestaurantManagement.Models.Zamowienia;
+using RestaurantManagement.Service;
 
 namespace RestaurantManagement
 {
