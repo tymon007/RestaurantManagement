@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RestaurantManagement.Models;
 
 namespace RestaurantManagement
 {
@@ -24,6 +25,8 @@ namespace RestaurantManagement
             timer.AutoReset = true;
             timer.Enabled = true;
             label_time.Text = DateTime.Now.ToString("HH:mm:ss");
+            User user = FormLogin.loggedInUser;
+            label_welcome.Text = "Witaj " + user.Login + "!";
         }
 
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)

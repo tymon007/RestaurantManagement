@@ -11,11 +11,12 @@ namespace RestaurantManagement.Models
         public string Login;
         public string Haslo;
         public int UserID;
-        public enum Rola
+        public string Rola;
+        public enum Role
         {
             Pracownik = 0,
-            Kierownik = 1,
-            Administrator = 2
+            Administrator = 1
         }
+        public int Status;
     }
 }

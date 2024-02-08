@@ -11,12 +11,13 @@ using static RestaurantManagement.Models.Zamowienia;
 using System.Data;
 using RestaurantManagement.Models;
 
+
 namespace RestaurantManagement.Service
 {
     internal class DatabaseHandler
     {
         private readonly string connectionString;
-
+        User user = FormLogin.loggedInUser;
         public DatabaseHandler()
         {
 
@@ -27,6 +28,8 @@ namespace RestaurantManagement.Service
 
 
             connectionString = $"Server={host};Database={database};User ID={username};Password={password};";
+
+            
         }
 
         public MySqlConnection GetConnection()
@@ -43,16 +46,17 @@ namespace RestaurantManagement.Service
             }
         }
 
-        public int ValidateLogin(string username, string password)
+        public User ValidateLogin(string username, string password)
         {
             //string hashedPassword = HashPassword(password);
-            int employeeId = -1;
+            
+            User user = null;
 
             using (MySqlConnection connection = GetConnection())
             {
                 connection.Open();
 
-                string query = "SELECT User_Id FROM rm_users WHERE User_Login = @Username AND User_Hasło = @PasswordHash";
+                string query = "SELECT * FROM rm_users WHERE User_Login = @Username AND User_Hasło = @PasswordHash";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -63,11 +67,20 @@ namespace RestaurantManagement.Service
                     {
                         if (reader.Read())
                         {
-                            employeeId = reader.GetInt32("User_Id");
+                            //employeeId = reader.GetInt32("User_Id");
+                            user = new User
+                            {
+                                Login = reader.GetString("User_Login"),
+                                Haslo = reader.GetString("User_Hasło"),
+                                UserID = reader.GetInt32("User_Id"),
+                                Rola = reader.GetString("User_Rola"),
+                                Status = reader.GetInt32("Status")
+                            };
                         }
                     }
                 }
-                return employeeId;
+
+                return user;
 
             }
         }
@@ -256,6 +269,54 @@ namespace RestaurantManagement.Service
             }
 
             return employee;
+        }
+        public GrafikWpis GetScheduleByDay(DateTime day)
+        {
+            GrafikWpis schedule = null;
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "SELECT * FROM rm_grafik WHERE Data = @Day AND User_Id = @UserId";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Day", day);
+                    command.Parameters.AddWithValue("@UserId", user.UserID);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            schedule = new GrafikWpis
+                            {
+                                Id = reader.GetInt32("Id_wpisu"),
+                                userId = reader.GetInt32("User_Id"),
+                                data = reader.GetDateTime("Data"),
+                                godzinaOd = reader.GetTimeSpan("Godzina_Od"),
+                                godzinaDo = reader.GetTimeSpan("Godzina_Do"),
+                                stan = reader.GetString("Stan")
+                            };
+                        }
+                    }
+                }
+            }
+            return schedule;    
+        }
+        public void InsertSchedule(GrafikWpis schedule)
+        {
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "INSERT INTO rm_grafik (User_Id, Data, Godzina_Od, Godzina_Do, Stan) " +
+                               "VALUES (@UserId, @Data, @GodzinaOd, @GodzinaDo, @Stan)";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", user.UserID);
+                    command.Parameters.AddWithValue("@Data", schedule.data);
+                    command.Parameters.AddWithValue("@GodzinaOd", schedule.godzinaOd);
+                    command.Parameters.AddWithValue("@GodzinaDo", schedule.godzinaDo);
+                    command.Parameters.AddWithValue("@Stan", schedule.stan);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System.Windows.Forms;
 using RestaurantManagement.Helpers;
 using RestaurantManagement.Service;
+using RestaurantManagement.Models;
 
 namespace RestaurantManagement
 {
     public partial class FormLogin : Form
     {
-        public static int loggedInUserId;
+        public static User loggedInUser;
         Helper helper = new Helper();
         public FormLogin()
         {
@@ -28,9 +29,14 @@ namespace RestaurantManagement
             string password = textBox2.Text;
 
             DatabaseHandler dbHandler = new DatabaseHandler();
-            loggedInUserId = dbHandler.ValidateLogin(username, password);
+            loggedInUser = dbHandler.ValidateLogin(username, password);
 
-            if (loggedInUserId != -1)
+            if (loggedInUser.Status == 0)
+            {
+                MessageBox.Show("Konto jest zablokowane.");
+                return;
+            }
+            if (loggedInUser.UserID != -1)
             {
 
                 this.Hide();

@@ -19,7 +19,7 @@ namespace RestaurantManagement
     {
         Helper helper = new Helper();
         DayPicker daypicker = new DayPicker();
-        int userId = FormLogin.loggedInUserId;
+        User user = FormLogin.loggedInUser;
         public Grafik()
         {
             InitializeComponent();
@@ -80,6 +80,24 @@ namespace RestaurantManagement
         private void comboBoxDzien_SelectedIndexChanged(object sender, EventArgs e)
         {
             panelCzasPracy.Show();
+
+            DateTime selectedDate = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
+            
+            
+            DatabaseHandler databaseHandler = new DatabaseHandler();
+            GrafikWpis grafik = databaseHandler.GetScheduleByDay(selectedDate);
+
+            if (grafik == null )
+            {
+                return;
+            }
+
+            if(grafik.data == selectedDate)
+            {
+                string message = "Wybrany dzień już jest zaplanowany.\n" +
+                "Tego dnia jesteś " + grafik.stan + " od godziny " + grafik.godzinaOd + " do godziny " + grafik.godzinaDo;
+                MessageBox.Show(message);
+            }
         }
 
         private void comboBoxDzien_Click(object sender, EventArgs e)
@@ -133,6 +151,17 @@ namespace RestaurantManagement
                     return;
                 }
                 //wyslanie danych do bazy
+                DateTime selectedDate = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
+                DatabaseHandler databaseHandler = new DatabaseHandler();
+                GrafikWpis grafik = new GrafikWpis();
+                grafik.data = selectedDate;
+                TimeSpan godzinaOdTS = new TimeSpan(dateTimePickerOd.Value.Hour, dateTimePickerOd.Value.Minute, dateTimePickerOd.Value.Second);
+                TimeSpan godzinaDoTS = new TimeSpan(dateTimePickerDo.Value.Hour, dateTimePickerDo.Value.Minute, dateTimePickerDo.Value.Second);
+                grafik.godzinaOd = godzinaOdTS;
+                grafik.godzinaDo = godzinaDoTS;
+                grafik.stan = comboBoxStatus.SelectedItem.ToString();
+                
+                databaseHandler.InsertSchedule(grafik);
                 MessageBox.Show("Dodano godziny pracy");
                 panelCzasPracy.Hide();
                 return;
@@ -150,7 +179,7 @@ namespace RestaurantManagement
         private void Profil_Load_1(object sender, EventArgs e)
         {
             DatabaseHandler db = new DatabaseHandler();
-            Pracownik employee = db.GetEmployeeById(userId);
+            Pracownik employee = db.GetEmployeeById(user.UserID);
             label3.Text = "Imię i nazwisko: "+ employee.ToString();
             label4.Text = "Płeć: " + employee.Plec;
             label5.Text = "Wiek: " + employee.Wiek;

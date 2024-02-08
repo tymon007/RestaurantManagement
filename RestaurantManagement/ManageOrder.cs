@@ -39,7 +39,7 @@ namespace RestaurantManagement
 
         private void ManageOrder_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = databaseHandler.GetDishesData();
+            //dataGridView1.DataSource = databaseHandler.GetDishesData();
 
             //foreach (DataRow row in dataGridView1.Rows)
             //{
