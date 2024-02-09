@@ -203,7 +203,7 @@ namespace RestaurantManagement.Service
             return dataTable;
         }
 
-        public int DodajZamowienie(decimal cena, string status, DateTime data, int userId, int adresId, string miejsceNumer)
+        public int DodajZamowienie(ZarzadzanieZamowieniami order)
         {
             int noweZamowienieId = -1;
 
@@ -211,19 +211,18 @@ namespace RestaurantManagement.Service
             {
                 connection.Open();
 
-                string query = "INSERT INTO rm_zamowienie (Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer) " +
-                               "VALUES (@Cena, @Status, @Data, @UserId, @AdresId, @MiejsceNumer); " +
-                               "SELECT LAST_INSERT_ID();";  // Pobierz ostatnio przydzielony identyfikator
+                string query = "INSERT INTO rm_zamowienie (Zamowienie_Cena, Zamowienie_Status, User_Id, Adres_Id) " +
+                               "VALUES (@Cena, @Status, @UserId, @AdresId); " +
+                               "SELECT LAST_INSERT_ID();";  
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     // Dodaj parametry do zabezpieczenia przed atakami SQL Injection
-                    command.Parameters.AddWithValue("@Cena", cena);
-                    command.Parameters.AddWithValue("@Status", status);
-                    command.Parameters.AddWithValue("@Data", data);
-                    command.Parameters.AddWithValue("@UserId", userId);
-                    command.Parameters.AddWithValue("@AdresId", adresId);
-                    command.Parameters.AddWithValue("@MiejsceNumer", miejsceNumer);
+                    command.Parameters.AddWithValue("@Cena", order.Cena);
+                    command.Parameters.AddWithValue("@Status", "Przyjęte");
+                    command.Parameters.AddWithValue("@UserId", user.UserID);
+                    command.Parameters.AddWithValue("@AdresId", order.Adres);
+                    
 
                     // Wykonaj polecenie i uzyskaj nowy identyfikator zamówienia
                     noweZamowienieId = Convert.ToInt32(command.ExecuteScalar());
