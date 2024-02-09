@@ -54,9 +54,11 @@
             buttonNieZrealizowano = new Button();
             buttonFiltruj = new Button();
             buttonWyslano = new Button();
+            zamowieniaBindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -109,6 +111,7 @@
             // 
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.ControlDarkDark;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -121,6 +124,7 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DataZ, GodzinaZ, GodzinaR, Zrealizowano, Pozycje, Wartość, namiejscu, Stolik, Adres });
+            dataGridView1.DataSource = zamowieniaBindingSource1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -316,6 +320,10 @@
             buttonWyslano.Text = "Wysłano";
             buttonWyslano.UseVisualStyleBackColor = false;
             // 
+            // zamowieniaBindingSource1
+            // 
+            zamowieniaBindingSource1.DataSource = typeof(Models.Zamowienia);
+            // 
             // ManageOrder
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -342,6 +350,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource1).EndInit();
             ResumeLayout(false);
         }
 
@@ -370,5 +379,6 @@
         private Button buttonFiltruj;
         private Button buttonWyslano;
         private BindingSource zamowieniaBindingSource;
+        private BindingSource zamowieniaBindingSource1;
     }
 }

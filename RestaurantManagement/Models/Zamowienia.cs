@@ -47,7 +47,7 @@ namespace RestaurantManagement.Models
             public int User;
             public List<ZamowienieElement> PozycjeZamowienia;
             public bool NaMiejscu;
-            public string? Adres;
+            public int? Adres;
             public int NumerZamowienia;
 
             public object DataGridViewModel => new
@@ -79,6 +79,17 @@ namespace RestaurantManagement.Models
                 }
 
                 return (pozycjeZamowienia.ToString(), wartoscZamowienia.ToString("00.00"));
+            }
+            public double WartoscZamowienia()
+            {
+                double wartoscZamowienia = 0;
+
+                foreach (ZamowienieElement item in PozycjeZamowienia)
+                {
+                    wartoscZamowienia += item.produkt_cena * item.produkt_ilosc;
+                }
+
+                return wartoscZamowienia;
             }
             public override string ToString()
             {

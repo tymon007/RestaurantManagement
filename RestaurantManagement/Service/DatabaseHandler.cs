@@ -170,7 +170,7 @@ namespace RestaurantManagement.Service
                                 Status_zamowienia = reader.GetString("Zamowienie_Status"),
                                 DataZlozenia = reader.GetDateTime("Zamowienie_Data"),
                                 User = reader.GetInt32("User_Id"),
-                                Adres = reader.GetString("Adres_Id"),
+                                Adres = reader.GetInt32("Adres_Id"),
                                 NumerZamowienia = reader.GetInt32("Miejsce_Numer")
                             };
                             zamowienia.Add(zamowienie);
@@ -316,6 +316,26 @@ namespace RestaurantManagement.Service
                     command.ExecuteNonQuery();
                 }
             }
+        }
+        public int InsertAddress(string phone, string address)
+        {
+            int address_Id = -1;
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "INSERT INTO rm_adres (Numer_Telefonu, Adres_Dostawy) " +
+                               "VALUES (@phone, @address);" +
+                               "SELECT LAST_INSERT_ID();";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@phone", phone);
+                    command.Parameters.AddWithValue("@address", address);
+
+                    address_Id = Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
+            return address_Id;
         }
     }
 }

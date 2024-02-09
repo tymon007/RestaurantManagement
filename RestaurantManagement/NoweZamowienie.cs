@@ -291,24 +291,29 @@ namespace RestaurantManagement
 
             bool naMiejscu = true;
             string adres = string.Empty;
-            if (selectedButton == buttonNaWynos)
-            {
-                naMiejscu = false;
-                adres = textBoxAdres.Text;
-            }
+
 
             if (successful)
             {
                 ZarzadzanieZamowieniami zamowienie = new ZarzadzanieZamowieniami();
+
+                if (selectedButton == buttonNaWynos)
+                {
+                    naMiejscu = false;
+                    adres = textBoxAdres.Text;
+                    zamowienie.Adres = dbHandler.InsertAddress(textBoxNumerTelefonu.Text, adres);
+                }
+
+                zamowienie.PozycjeZamowienia = listaZamowien;
+                zamowienie.Cena = zamowienie.WartoscZamowienia();
                 int idZamowienia = dbHandler.DodajZamowienie(zamowienie);
 
                 zamowienie.IDZamowienia = idZamowienia;
                 zamowienie.Status = ZarzadzanieZamowieniami.StatusZamowienia.Przyjete;
                 zamowienie.DataZlozenia = DateTime.Now;
-                zamowienie.PozycjeZamowienia = listaZamowien;
+                
                 zamowienie.NaMiejscu = naMiejscu;
-                zamowienie.Adres = adres;
-
+                
                 MessageBox.Show("Podsumowanie zamówienia: \n\n" + zamowienie.ToString());
             }
         }
