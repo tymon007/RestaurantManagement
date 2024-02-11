@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static RestaurantManagement.Models.Zamowienia;
 using RestaurantManagement.Service;
+using RestaurantManagement.Models;
 
 namespace RestaurantManagement
 {
@@ -39,6 +40,9 @@ namespace RestaurantManagement
 
         private void ManageOrder_Load(object sender, EventArgs e)
         {
+            zarzadzanieZamowieniami = new ZarzadzanieZamowieniami();
+            listaZamowien = databaseHandler.GetZamowienia();
+            dataGridView1.DataSource = zarzadzanieZamowieniami.DataGridViewModel;
             //dataGridView1.DataSource = databaseHandler.GetDishesData();
 
             //foreach (DataRow row in dataGridView1.Rows)

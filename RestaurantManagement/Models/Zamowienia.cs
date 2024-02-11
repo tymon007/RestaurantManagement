@@ -15,6 +15,8 @@ namespace RestaurantManagement.Models
             public int produkt_id;
             public string? produkt_nazwa;
             public double produkt_cena;
+            public int zamowienie_id;
+            public int danie_id;
 
             public object DataGridViewModel => new
             {
@@ -43,7 +45,8 @@ namespace RestaurantManagement.Models
             public string Status_zamowienia;
             public StatusZamowienia Status;
             public DateTime DataZlozenia;
-            public DateTime? GodzinaRealizacji;
+            public TimeSpan GodzinaZlozenia;
+            public TimeSpan? GodzinaRealizacji;
             public int User;
             public List<ZamowienieElement> PozycjeZamowienia;
             public bool NaMiejscu;

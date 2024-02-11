@@ -164,24 +164,24 @@ namespace RestaurantManagement
         private void DodajZamowienieDoListy(string nazwaProduktu, int ilosc)
         {
             DatabaseHandler dbHandler = new DatabaseHandler();
-            int temp_id = 0;
-            double temp_cena = 0;
+            int danie_id = 0;
+            double danie_cena = 0;
             List<MenuItem> allMenuItems = dbHandler.GetMenuItems();
+
             foreach (MenuItem item in allMenuItems)
             {
                 if (item.name == nazwaProduktu)
                 {
-                    temp_id = item.id;
-                    temp_cena = item.price;
+                    danie_id = item.id;
+                    danie_cena = item.price;
                 }
             }
             ZamowienieElement zamowienie = new ZamowienieElement
             {
                 produkt_ilosc = ilosc,
-
-                produkt_id = temp_id, // tymczasowo
+                produkt_id = danie_id, // tymczasowo
                 produkt_nazwa = nazwaProduktu,
-                produkt_cena = temp_cena // tymczasowo
+                produkt_cena = danie_cena // tymczasowo
             };
 
             listaZamowien.Add(zamowienie);
@@ -304,10 +304,16 @@ namespace RestaurantManagement
                     zamowienie.Adres = dbHandler.InsertAddress(textBoxNumerTelefonu.Text, adres);
                 }
 
+
                 zamowienie.PozycjeZamowienia = listaZamowien;
                 zamowienie.Cena = zamowienie.WartoscZamowienia();
                 int idZamowienia = dbHandler.DodajZamowienie(zamowienie);
 
+                foreach (ZamowienieElement pozycja in listaZamowien)
+                {
+                    pozycja.zamowienie_id = idZamowienia;
+                    dbHandler.DodajPozycjeZamowienia(pozycja);
+                }
                 zamowienie.IDZamowienia = idZamowienia;
                 zamowienie.Status = ZarzadzanieZamowieniami.StatusZamowienia.Przyjete;
                 zamowienie.DataZlozenia = DateTime.Now;

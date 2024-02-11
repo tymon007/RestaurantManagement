@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static RestaurantManagement.Models.Zamowienia;
 using System.Data;
 using RestaurantManagement.Models;
+using Org.BouncyCastle.Utilities.Net;
 
 
 namespace RestaurantManagement.Service
@@ -29,7 +30,7 @@ namespace RestaurantManagement.Service
 
             connectionString = $"Server={host};Database={database};User ID={username};Password={password};";
 
-            
+
         }
 
         public MySqlConnection GetConnection()
@@ -49,7 +50,7 @@ namespace RestaurantManagement.Service
         public User ValidateLogin(string username, string password)
         {
             //string hashedPassword = HashPassword(password);
-            
+
             User user = null;
 
             using (MySqlConnection connection = GetConnection())
@@ -155,7 +156,8 @@ namespace RestaurantManagement.Service
             {
                 connection.Open();
 
-                string query = "SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer FROM rm_zamowienie";
+                string query = "SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Godzina_złożenia_zamówienia, User_Id, Adres_Id, Godzina_zakonczenia_zamowienia " +
+                    "FROM rm_zamowienie";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -166,13 +168,14 @@ namespace RestaurantManagement.Service
                             ZarzadzanieZamowieniami zamowienie = new ZarzadzanieZamowieniami
                             {
                                 IDZamowienia = reader.GetInt32("Zamowienie_Id"),
-                                Cena = reader.GetDouble("Zamowienie_Cena"),
+                                DataZlozenia = reader.GetDateTime("Godzina_złożenia_zamówienia").Date,
+                                GodzinaZlozenia = reader.GetDateTime("Godzina_złożenia_zamówienia").TimeOfDay,
                                 Status_zamowienia = reader.GetString("Zamowienie_Status"),
-                                DataZlozenia = reader.GetDateTime("Zamowienie_Data"),
-                                User = reader.GetInt32("User_Id"),
-                                Adres = reader.GetInt32("Adres_Id"),
-                                NumerZamowienia = reader.GetInt32("Miejsce_Numer")
+                                Cena = reader.GetDouble("Zamowienie_Cena"),
+                                Adres = reader.IsDBNull(reader.GetOrdinal("Adres_Id")) ? (int?)null : reader.GetInt32("Adres_Id"),
+                                GodzinaRealizacji = reader.IsDBNull(reader.GetOrdinal("Godzina_zakonczenia_zamowienia")) ? (TimeSpan?)null : reader.GetDateTime("Godzina_zakonczenia_zamowienia").TimeOfDay
                             };
+
                             zamowienia.Add(zamowienie);
                         }
                     }
@@ -213,7 +216,7 @@ namespace RestaurantManagement.Service
 
                 string query = "INSERT INTO rm_zamowienie (Zamowienie_Cena, Zamowienie_Status, User_Id, Adres_Id) " +
                                "VALUES (@Cena, @Status, @UserId, @AdresId); " +
-                               "SELECT LAST_INSERT_ID();";  
+                               "SELECT LAST_INSERT_ID();";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -222,7 +225,7 @@ namespace RestaurantManagement.Service
                     command.Parameters.AddWithValue("@Status", "Przyjęte");
                     command.Parameters.AddWithValue("@UserId", user.UserID);
                     command.Parameters.AddWithValue("@AdresId", order.Adres);
-                    
+
 
                     // Wykonaj polecenie i uzyskaj nowy identyfikator zamówienia
                     noweZamowienieId = Convert.ToInt32(command.ExecuteScalar());
@@ -250,7 +253,7 @@ namespace RestaurantManagement.Service
                     {
                         if (reader.Read())
                         {
-                            
+
                             employee = new Pracownik
                             {
                                 Id = reader.GetInt32("User_Id"),
@@ -260,7 +263,7 @@ namespace RestaurantManagement.Service
                                 Wiek = reader.GetInt32("Wiek"),
                                 DataRozpoczeciaPracy = reader.GetDateTime("Data_Rozpoczecia_Pracy"),
                                 LinkDoZdjecia = reader.GetString("LinkDoZdjecia")
-                                
+
                             };
                         }
                     }
@@ -297,7 +300,7 @@ namespace RestaurantManagement.Service
                     }
                 }
             }
-            return schedule;    
+            return schedule;
         }
         public void InsertSchedule(GrafikWpis schedule)
         {
@@ -337,5 +340,25 @@ namespace RestaurantManagement.Service
             }
             return address_Id;
         }
+        public void DodajPozycjeZamowienia(ZamowienieElement pozycja)
+        {
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "INSERT INTO rm_pozycja (Zamowienie_Id, Danie_Id, Ilosc, Cena_jednostki) " +
+                               "VALUES (@Zamowienie_Id, @Danie_Id, @Ilosc, @Cena);";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Zamowienie_Id", pozycja.zamowienie_id);
+                    command.Parameters.AddWithValue("@Danie_Id", pozycja.produkt_id);
+                    command.Parameters.AddWithValue("@Ilosc", pozycja.produkt_ilosc);
+                    command.Parameters.AddWithValue("@Cena", pozycja.produkt_cena);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        
     }
 }
