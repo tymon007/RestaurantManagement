@@ -42,7 +42,7 @@ namespace RestaurantManagement
         {
             zarzadzanieZamowieniami = new ZarzadzanieZamowieniami();
             listaZamowien = databaseHandler.GetZamowienia();
-            dataGridView1.DataSource = zarzadzanieZamowieniami.DataGridViewModel;
+            
             //dataGridView1.DataSource = databaseHandler.GetDishesData();
 
             //foreach (DataRow row in dataGridView1.Rows)

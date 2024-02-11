@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestaurantManagement.Helpers;
+using RestaurantManagement.Models;
 
 namespace RestaurantManagement
 {
@@ -91,6 +92,8 @@ namespace RestaurantManagement
 
         private void buttonDodaj_Click(object sender, EventArgs e)
         {
+            Rezerwacja rezerwacja = new Rezerwacja();
+
             if (comboBoxStolik.SelectedItem == null)
             {
                 MessageBox.Show("W celu dokonania rezerwacji nalezy wybrac stolik");
@@ -117,6 +120,11 @@ namespace RestaurantManagement
 
             string stolik = comboBoxStolik.SelectedItem.ToString();
 
+            rezerwacja.DataOd = dataOd;
+            rezerwacja.DataDo = dataDo;
+            rezerwacja.OsobaRezerwujaca = "Klient";
+            rezerwacja.Stolik = stolik;
+            
             //Wyslac zapytanie do bazy czy jest wolny ten stolik w wybranym terminie, dane ponizej tymczasowe, po utworzeniu rezerwacji baza musi zwrocic idRezerwacji
             bool wolne = true;
             int idRezerwacji = 123456789;

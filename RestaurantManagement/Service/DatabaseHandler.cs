@@ -11,6 +11,7 @@ using static RestaurantManagement.Models.Zamowienia;
 using System.Data;
 using RestaurantManagement.Models;
 using Org.BouncyCastle.Utilities.Net;
+using System.Reflection;
 
 
 namespace RestaurantManagement.Service
@@ -360,5 +361,128 @@ namespace RestaurantManagement.Service
             }
         }
         
+        public List<ZamowienieElement> GetZamowienieElements(int orderId)
+        {
+            List<ZamowienieElement> elements = new List<ZamowienieElement>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT P.Ilosc, P.Danie_Id, D.Nazwa AS DanieNazwa, P.Cena_jednostki, P.Zamowienie_Id" +
+                         "FROM rm_pozycja AS P" +
+                         "INNER JOIN rm_dania AS D ON P.Danie_Id = D.Danie_Id" +
+                         "WHERE P.Zamowienie_Id = @OrderId;";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ZamowienieElement element = new ZamowienieElement
+                            {
+                                produkt_ilosc = reader.GetInt32("Ilosc"),
+                                produkt_id = reader.GetInt32("Danie_Id"),
+                                produkt_nazwa = reader.GetString("DanieNazwa"),
+                                produkt_cena = reader.GetDouble("Cena_jednostki"),
+                                zamowienie_id = reader.GetInt32("Zamowienie_Id")
+                            };
+
+                            elements.Add(element);
+                        }
+                    }
+                }
+            }
+
+            return elements;
+        }
+        public Adres GetAddressById(int addressId)
+        {
+            Adres address = null;
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM rm_adres WHERE Adres_Id = @AddressId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@AddressId", addressId);
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            address = new Adres
+                            {
+                                ID = reader.GetInt32("Adres_Id"),
+                                adres = reader.GetString("Adres_Dostawy"),
+                                telefon = reader.GetString("Numer_Telefonu")
+                            };
+                        }
+                    }
+                }
+            }
+
+            return address;
+        }
+        public void InsertReservation(Rezerwacja reservation)
+        {
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string query = "INSERT INTO rezerwacje (dataOd, dataDo, OsobaRezerwujaca, stolik) " +
+                               "VALUES (@dataOd, @DataDo, @OsobaRezerwujaca, @stolik)";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@dataOd", reservation.DataOd);
+                    command.Parameters.AddWithValue("@DataDo", reservation.DataDo);
+                    command.Parameters.AddWithValue("@OsobaRezerwujaca", reservation.OsobaRezerwujaca);
+                    command.Parameters.AddWithValue("@stolik", reservation.Stolik);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public List<Rezerwacja> GetRezerwacjaList()
+        {
+               List<Rezerwacja> rezerwacje = new List<Rezerwacja>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM rezerwacje";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Rezerwacja rezerwacja = new Rezerwacja
+                            {
+                                Id = reader.GetInt32("Id"),
+                                DataOd = reader.GetDateTime("dataOd"),
+                                DataDo = reader.GetDateTime("dataDo"),
+                                OsobaRezerwujaca = reader.GetString("OsobaRezerwujaca"),
+                                Stolik = reader.GetString("stolik")
+                            };
+
+                            rezerwacje.Add(rezerwacja);
+                        }
+                    }
+                }
+            }
+
+            return rezerwacje;  
+        }
+
     }
 }

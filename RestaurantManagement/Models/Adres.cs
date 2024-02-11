@@ -8,5 +8,8 @@ namespace RestaurantManagement.Models
 {
     internal class Adres
     {
+        public int ID;
+        public string adres;
+        public string telefon;
     }
 }
