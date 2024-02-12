@@ -70,9 +70,15 @@ namespace RestaurantManagement
                 }
                 else
                 {
-                    zamowienie.AdresString = ""; // Możesz ustawić pusty tekst lub inny tekst, gdy Adres jest null
+                    zamowienie.AdresString = ""; 
                 }
                 zamowienie.PozycjeZamowienia = pozycje;
+
+                String listaPozycji = "";
+                foreach (var pozycja in pozycje)
+                {
+                    listaPozycji += pozycja + " ";
+                }
 
                 dataGridView1.Rows[rowIndex].Cells["IDZamowienia"].Value = zamowienie.IDZamowienia;
                 dataGridView1.Rows[rowIndex].Cells["DataZlozenia"].Value = zamowienie.DataZlozenia.ToShortDateString();
@@ -81,7 +87,7 @@ namespace RestaurantManagement
                 dataGridView1.Rows[rowIndex].Cells["Cena"].Value = zamowienie.Cena;
                 dataGridView1.Rows[rowIndex].Cells["Adres"].Value = zamowienie.AdresString;
                 dataGridView1.Rows[rowIndex].Cells["GodzinaRealizacji"].Value = zamowienie.GodzinaRealizacji;
-                dataGridView1.Rows[rowIndex].Cells["pozycje"].Value = zamowienie.PozycjeZamowienia.ToString();
+                dataGridView1.Rows[rowIndex].Cells["pozycje"].Value = listaPozycji;//zamowienie.PozycjeZamowienia.ToString();
             }
 
             //dataGridView1.DataSource = databaseHandler.GetDishesData();
