@@ -28,57 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            label7 = new Label();
             label_welcome = new Label();
             button_logout = new Button();
             label_time = new Label();
             dataGridViewPopularnoscDan = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
             dataGridViewGodzinyPracownikow = new DataGridView();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
-            Column8 = new DataGridViewTextBoxColumn();
             dataGridViewPodzialPrzychodu = new DataGridView();
-            Column9 = new DataGridViewTextBoxColumn();
-            Column10 = new DataGridViewTextBoxColumn();
-            Column11 = new DataGridViewTextBoxColumn();
-            Column12 = new DataGridViewTextBoxColumn();
-            Column13 = new DataGridViewTextBoxColumn();
-            Column14 = new DataGridViewTextBoxColumn();
             dataGridViewRocznyPrzychod = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             panel3 = new Panel();
             label4 = new Label();
-            panel4 = new Panel();
             buttonOdswiezDane = new Button();
-            label6 = new Label();
-            comboBoxMiesiac = new ComboBox();
-            label5 = new Label();
-            comboBoxRok = new ComboBox();
-            label7 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPopularnoscDan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewGodzinyPracownikow).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPodzialPrzychodu).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRocznyPrzychod).BeginInit();
-            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -92,6 +70,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1020, 80);
             panel1.TabIndex = 7;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(358, 20);
+            label7.Name = "label7";
+            label7.Size = new Size(294, 32);
+            label7.TabIndex = 4;
+            label7.Text = "PANEL ADMINISTRATORA";
             // 
             // label_welcome
             // 
@@ -134,24 +123,23 @@
             dataGridViewPopularnoscDan.AllowUserToResizeRows = false;
             dataGridViewPopularnoscDan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPopularnoscDan.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = SystemColors.Control;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dataGridViewPopularnoscDan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewPopularnoscDan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewPopularnoscDan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPopularnoscDan.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = SystemColors.Window;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            dataGridViewPopularnoscDan.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewPopularnoscDan.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewPopularnoscDan.Location = new Point(651, 194);
             dataGridViewPopularnoscDan.MultiSelect = false;
             dataGridViewPopularnoscDan.Name = "dataGridViewPopularnoscDan";
@@ -168,48 +156,29 @@
             dataGridViewPopularnoscDan.Size = new Size(369, 400);
             dataGridViewPopularnoscDan.TabIndex = 8;
             // 
-            // Column1
-            // 
-            Column1.HeaderText = "Nazwa Dania";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Ilość szt.";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Udział %";
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
             // dataGridViewGodzinyPracownikow
             // 
             dataGridViewGodzinyPracownikow.AllowUserToResizeColumns = false;
             dataGridViewGodzinyPracownikow.AllowUserToResizeRows = false;
             dataGridViewGodzinyPracownikow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewGodzinyPracownikow.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = SystemColors.Control;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dataGridViewGodzinyPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridViewGodzinyPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewGodzinyPracownikow.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewGodzinyPracownikow.Columns.AddRange(new DataGridViewColumn[] { Column4, Column5, Column6, Column7, Column8 });
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = SystemColors.Window;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
-            dataGridViewGodzinyPracownikow.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridViewGodzinyPracownikow.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewGodzinyPracownikow.Location = new Point(0, 634);
             dataGridViewGodzinyPracownikow.MultiSelect = false;
             dataGridViewGodzinyPracownikow.Name = "dataGridViewGodzinyPracownikow";
@@ -226,60 +195,29 @@
             dataGridViewGodzinyPracownikow.Size = new Size(645, 386);
             dataGridViewGodzinyPracownikow.TabIndex = 9;
             // 
-            // Column4
-            // 
-            Column4.HeaderText = "Imie";
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Nazwisko";
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "Zaplanowane";
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            Column7.HeaderText = "Urlop";
-            Column7.Name = "Column7";
-            Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            Column8.HeaderText = "Niedostepny";
-            Column8.Name = "Column8";
-            Column8.ReadOnly = true;
-            // 
             // dataGridViewPodzialPrzychodu
             // 
             dataGridViewPodzialPrzychodu.AllowUserToResizeColumns = false;
             dataGridViewPodzialPrzychodu.AllowUserToResizeRows = false;
             dataGridViewPodzialPrzychodu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPodzialPrzychodu.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = SystemColors.Control;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dataGridViewPodzialPrzychodu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewPodzialPrzychodu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewPodzialPrzychodu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPodzialPrzychodu.Columns.AddRange(new DataGridViewColumn[] { Column9, Column10, Column11, Column12, Column13, Column14 });
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = SystemColors.Window;
-            dataGridViewCellStyle14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle14.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
-            dataGridViewPodzialPrzychodu.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dataGridViewPodzialPrzychodu.DefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewPodzialPrzychodu.Location = new Point(0, 194);
             dataGridViewPodzialPrzychodu.MultiSelect = false;
             dataGridViewPodzialPrzychodu.Name = "dataGridViewPodzialPrzychodu";
@@ -296,66 +234,29 @@
             dataGridViewPodzialPrzychodu.Size = new Size(645, 400);
             dataGridViewPodzialPrzychodu.TabIndex = 10;
             // 
-            // Column9
-            // 
-            Column9.HeaderText = "Przychód na miejscu";
-            Column9.Name = "Column9";
-            Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            Column10.HeaderText = "Udział %";
-            Column10.Name = "Column10";
-            Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            Column11.HeaderText = "Ilość";
-            Column11.Name = "Column11";
-            Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            Column12.HeaderText = "Przychód na wynos";
-            Column12.Name = "Column12";
-            Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            Column13.HeaderText = "Udział %";
-            Column13.Name = "Column13";
-            Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            Column14.HeaderText = "Ilość";
-            Column14.Name = "Column14";
-            Column14.ReadOnly = true;
-            // 
             // dataGridViewRocznyPrzychod
             // 
             dataGridViewRocznyPrzychod.AllowUserToResizeColumns = false;
             dataGridViewRocznyPrzychod.AllowUserToResizeRows = false;
             dataGridViewRocznyPrzychod.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewRocznyPrzychod.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = SystemColors.Control;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            dataGridViewRocznyPrzychod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridViewRocznyPrzychod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewRocznyPrzychod.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRocznyPrzychod.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn3 });
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = SystemColors.Window;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle16.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle16.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
-            dataGridViewRocznyPrzychod.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dataGridViewRocznyPrzychod.DefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewRocznyPrzychod.Location = new Point(651, 634);
             dataGridViewRocznyPrzychod.MultiSelect = false;
             dataGridViewRocznyPrzychod.Name = "dataGridViewRocznyPrzychod";
@@ -371,18 +272,6 @@
             dataGridViewRocznyPrzychod.ShowRowErrors = false;
             dataGridViewRocznyPrzychod.Size = new Size(369, 386);
             dataGridViewRocznyPrzychod.TabIndex = 11;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "Miesiąc";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "Łączny przychód";
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // panel2
             // 
@@ -406,11 +295,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(238, 166);
+            label2.Location = new Point(167, 166);
             label2.Name = "label2";
-            label2.Size = new Size(167, 25);
+            label2.Size = new Size(358, 25);
             label2.TabIndex = 14;
-            label2.Text = "Podział przychodu";
+            label2.Text = "Podział przychodu na miejscu / na wynos";
             // 
             // label3
             // 
@@ -440,91 +329,25 @@
             label4.TabIndex = 17;
             label4.Text = "Roczny przychód";
             // 
-            // panel4
-            // 
-            panel4.BackColor = SystemColors.ActiveCaption;
-            panel4.Controls.Add(buttonOdswiezDane);
-            panel4.Controls.Add(label6);
-            panel4.Controls.Add(comboBoxMiesiac);
-            panel4.Controls.Add(label5);
-            panel4.Controls.Add(comboBoxRok);
-            panel4.Location = new Point(0, 80);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(1020, 83);
-            panel4.TabIndex = 18;
-            // 
             // buttonOdswiezDane
             // 
-            buttonOdswiezDane.BackColor = Color.White;
+            buttonOdswiezDane.BackColor = Color.LightBlue;
             buttonOdswiezDane.FlatStyle = FlatStyle.Popup;
-            buttonOdswiezDane.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonOdswiezDane.Location = new Point(697, 27);
+            buttonOdswiezDane.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonOdswiezDane.Location = new Point(0, 80);
             buttonOdswiezDane.Name = "buttonOdswiezDane";
-            buttonOdswiezDane.Size = new Size(140, 33);
+            buttonOdswiezDane.Size = new Size(1020, 83);
             buttonOdswiezDane.TabIndex = 18;
             buttonOdswiezDane.Text = "Odśwież dane";
             buttonOdswiezDane.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(403, 30);
-            label6.Name = "label6";
-            label6.Size = new Size(82, 25);
-            label6.TabIndex = 17;
-            label6.Text = "Miesiąc:";
-            // 
-            // comboBoxMiesiac
-            // 
-            comboBoxMiesiac.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxMiesiac.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxMiesiac.FormattingEnabled = true;
-            comboBoxMiesiac.Location = new Point(491, 27);
-            comboBoxMiesiac.MinimumSize = new Size(120, 0);
-            comboBoxMiesiac.Name = "comboBoxMiesiac";
-            comboBoxMiesiac.Size = new Size(160, 33);
-            comboBoxMiesiac.TabIndex = 16;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(149, 30);
-            label5.Name = "label5";
-            label5.Size = new Size(53, 25);
-            label5.TabIndex = 15;
-            label5.Text = "Rok:";
-            // 
-            // comboBoxRok
-            // 
-            comboBoxRok.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxRok.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxRok.FormattingEnabled = true;
-            comboBoxRok.Location = new Point(208, 27);
-            comboBoxRok.MinimumSize = new Size(120, 0);
-            comboBoxRok.Name = "comboBoxRok";
-            comboBoxRok.Size = new Size(160, 33);
-            comboBoxRok.TabIndex = 0;
-            comboBoxRok.SelectedIndexChanged += comboBoxRok_SelectedIndexChanged;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(358, 20);
-            label7.Name = "label7";
-            label7.Size = new Size(294, 32);
-            label7.TabIndex = 4;
-            label7.Text = "PANEL ADMINISTRATORA";
+            buttonOdswiezDane.Click += buttonOdswiezDane_Click;
             // 
             // Raports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1020, 1020);
-            Controls.Add(panel4);
+            Controls.Add(buttonOdswiezDane);
             Controls.Add(label4);
             Controls.Add(panel3);
             Controls.Add(label3);
@@ -549,8 +372,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewGodzinyPracownikow).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPodzialPrzychodu).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRocznyPrzychod).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -563,36 +384,15 @@
         private Label label_time;
         private DataGridView dataGridViewPopularnoscDan;
         private DataGridView dataGridViewGodzinyPracownikow;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn Column8;
         private DataGridView dataGridViewPodzialPrzychodu;
         private DataGridView dataGridViewRocznyPrzychod;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column9;
-        private DataGridViewTextBoxColumn Column10;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn Column12;
-        private DataGridViewTextBoxColumn Column13;
-        private DataGridViewTextBoxColumn Column14;
         private Panel panel2;
         private Label label1;
         private Label label2;
         private Label label3;
         private Panel panel3;
         private Label label4;
-        private Panel panel4;
-        private Label label6;
-        private ComboBox comboBoxMiesiac;
-        private Label label5;
-        private ComboBox comboBoxRok;
-        private Button buttonOdswiezDane;
         private Label label7;
+        private Button buttonOdswiezDane;
     }
 }

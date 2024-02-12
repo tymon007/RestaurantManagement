@@ -60,5 +60,10 @@ namespace RestaurantManagement
         {
             helper.OpenOnScreenKeyboard();
         }
+
+        private void buttonZamknij_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -33,6 +33,7 @@
             button_login = new Button();
             panel1 = new Panel();
             label3 = new Label();
+            buttonZamknij = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -104,12 +105,27 @@
             label3.TabIndex = 6;
             label3.Text = "Trzej Burgerowie";
             // 
+            // buttonZamknij
+            // 
+            buttonZamknij.BackColor = Color.Black;
+            buttonZamknij.FlatStyle = FlatStyle.Popup;
+            buttonZamknij.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonZamknij.ForeColor = Color.IndianRed;
+            buttonZamknij.Location = new Point(880, 0);
+            buttonZamknij.Name = "buttonZamknij";
+            buttonZamknij.Size = new Size(140, 74);
+            buttonZamknij.TabIndex = 19;
+            buttonZamknij.Text = "Zakończ";
+            buttonZamknij.UseVisualStyleBackColor = false;
+            buttonZamknij.Click += buttonZamknij_Click;
+            // 
             // FormLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 64, 0);
             ClientSize = new Size(1020, 1020);
+            Controls.Add(buttonZamknij);
             Controls.Add(label3);
             Controls.Add(panel1);
             Controls.Add(button_login);
@@ -134,5 +150,6 @@
         private Button button_login;
         private Panel panel1;
         private Label label3;
+        private Button buttonZamknij;
     }
 }
