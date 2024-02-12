@@ -15,7 +15,9 @@
  2. View "Nowe zamówienie" - Here, a user can create a new order, and attach dishes to it. It will sum up the prices of the dishes, and let the user create an order in the database.
  3. View "Zarządzanie zamówieniami" - Here a user can view, and manage orders, marking it as finished, or seeing the address to which the order should be delivered.
  4. View "Rezerwacje" - Here a user can create a new reservation for a certain table, and see todays reservations, or reservations for a chosen date.
- 5. View "Grafik" - Here a user can fill if he/she will be available for the day or not, and plan his/her availability for next days. The data from this view will be then used to create reports of employee work times.
+ 5. View "Grafik" - Here a user can fill if he/she will be available for the day or not, and plan his/her availability for next days. The data from this view will be then used to create reports of employee work times. This view also allows the user to view his information.
+ 6. View "Raporty" - Here a user can view reports of various data from the database. This view can help visualize some data that is collected by the application.
+ 7. View "Zarządzanie użytkownikami" - Here an administrator can change user roles, delete personal data from the database, or change employee status.
 
 # Język Polski
 
@@ -34,4 +36,6 @@
  2. Widok "Nowe zamówienie" - pozwala na tworzenie nowego zamówienia oraz podpinanie do niego dań. Widok sumuje wartość zamówienia, i pozwala stworzyć zamówienie w bazie danych.
  3. Widok "Zarządzanie zamówieniami" - pozwala zobaczyć, oraz zarządzać zamówieniami oznaczając je jaki zrealizowane, oraz daje możliwość podejrzenia adresu dostawy zamówienia.
  4. Widok "Rezerwacje" - pozwala stworzyć nową rezerwację dotyczącą wybranego stolika, zobaczyć dzisiejsze rezerwacje, oraz rezerwacje w wybranej dacie.
- 5. Widok "Grafik" - pozwala wypełnić użytkownikom swoją dostępność dla zaznaczonego dnia, oraz planować dostępność dla innych wybranych dni. Dane z tego widoku zostaną użyte do tworzenia raportów godzin pracy pracowników.
+ 5. Widok "Grafik" - pozwala wypełnić użytkownikom swoją dostępność dla zaznaczonego dnia, oraz planować dostępność dla innych wybranych dni. Dane z tego widoku zostaną użyte do tworzenia raportów godzin pracy pracowników. Widok ten pozwala również użytkownikowi na wyświetlenie jego danych.
+ 6. Widok "Raporty" - pozwala użytkownikowi zobaczyć raporty z wybranych miesięcy i lat pozwalając lepiej zobrazować dane zbierane przez aplikację.
+ 7. Widok "Zarządzanie użytkownikami" - pozwala administratorowi na zmianę roli użytkowników, usunięcie ich danych osobowych, oraz zmianę ich statusu.
