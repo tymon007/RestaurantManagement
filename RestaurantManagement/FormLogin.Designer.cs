@@ -40,7 +40,7 @@
             textBox1.BackColor = Color.White;
             textBox1.BorderStyle = BorderStyle.FixedSingle;
             textBox1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.ForeColor = Color.White;
+            textBox1.ForeColor = Color.Black;
             textBox1.ImeMode = ImeMode.NoControl;
             textBox1.Location = new Point(0, 421);
             textBox1.MinimumSize = new Size(1020, 200);
@@ -96,15 +96,15 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Snap ITC", 36F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Regular, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(247, 204, 60);
             label3.Location = new Point(267, 19);
             label3.Name = "label3";
-            label3.Size = new Size(505, 63);
+            label3.Size = new Size(387, 55);
             label3.TabIndex = 6;
             label3.Text = "Trzej Burgerowie";
             // 
-            // Form1
+            // FormLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -119,7 +119,7 @@
             FormBorderStyle = FormBorderStyle.None;
             MaximumSize = new Size(1020, 1020);
             MinimumSize = new Size(1020, 1020);
-            Name = "Form1";
+            Name = "FormLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;

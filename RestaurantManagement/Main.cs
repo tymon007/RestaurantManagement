@@ -14,12 +14,20 @@ namespace RestaurantManagement
 {
     public partial class Main : Form
     {
+        User LoggedInUser = FormLogin.loggedInUser;
         public Main()
         {
             InitializeComponent();
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            if (LoggedInUser.Rola.Equals("Pracownik", StringComparison.OrdinalIgnoreCase))
+            {
+                buttonRaporty.Enabled = false;
+                buttonZarzadzanie.Enabled = false;
+                buttonRaporty.Hide();
+                buttonZarzadzanie.Hide();
+            }
             System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.Elapsed += OnTimedEvent;
             timer.AutoReset = true;
@@ -76,6 +84,13 @@ namespace RestaurantManagement
         {
             Form ManageOrder = new ManageOrder();
             this.Hide(); ManageOrder.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Raports raportform = new Raports();
+            this.Hide();
+            raportform.Show();
         }
     }
 }

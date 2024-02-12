@@ -37,8 +37,8 @@
             panel1 = new Panel();
             button2 = new Button();
             button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            buttonRaporty = new Button();
+            buttonZarzadzanie = new Button();
             button6 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -137,33 +137,34 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // button4
+            // buttonRaporty
             // 
-            button4.BackColor = Color.Black;
-            button4.BackgroundImageLayout = ImageLayout.Center;
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(619, 623);
-            button4.Name = "button4";
-            button4.Size = new Size(262, 150);
-            button4.TabIndex = 8;
-            button4.Text = "Raporty";
-            button4.UseVisualStyleBackColor = false;
+            buttonRaporty.BackColor = Color.Black;
+            buttonRaporty.BackgroundImageLayout = ImageLayout.Center;
+            buttonRaporty.FlatStyle = FlatStyle.Popup;
+            buttonRaporty.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRaporty.ForeColor = Color.White;
+            buttonRaporty.Location = new Point(619, 623);
+            buttonRaporty.Name = "buttonRaporty";
+            buttonRaporty.Size = new Size(262, 150);
+            buttonRaporty.TabIndex = 8;
+            buttonRaporty.Text = "Raporty";
+            buttonRaporty.UseVisualStyleBackColor = false;
+            buttonRaporty.Click += button4_Click;
             // 
-            // button5
+            // buttonZarzadzanie
             // 
-            button5.BackColor = Color.Black;
-            button5.BackgroundImageLayout = ImageLayout.Center;
-            button5.FlatStyle = FlatStyle.Popup;
-            button5.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(137, 779);
-            button5.Name = "button5";
-            button5.Size = new Size(744, 109);
-            button5.TabIndex = 9;
-            button5.Text = "Zarządzanie użytkownikami";
-            button5.UseVisualStyleBackColor = false;
+            buttonZarzadzanie.BackColor = Color.Black;
+            buttonZarzadzanie.BackgroundImageLayout = ImageLayout.Center;
+            buttonZarzadzanie.FlatStyle = FlatStyle.Popup;
+            buttonZarzadzanie.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonZarzadzanie.ForeColor = Color.White;
+            buttonZarzadzanie.Location = new Point(137, 779);
+            buttonZarzadzanie.Name = "buttonZarzadzanie";
+            buttonZarzadzanie.Size = new Size(744, 109);
+            buttonZarzadzanie.TabIndex = 9;
+            buttonZarzadzanie.Text = "Zarządzanie użytkownikami";
+            buttonZarzadzanie.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -188,8 +189,8 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1020, 1020);
             Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
+            Controls.Add(buttonZarzadzanie);
+            Controls.Add(buttonRaporty);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(panel1);
@@ -215,8 +216,8 @@
         private Panel panel1;
         private Button button2;
         private Button button3;
-        private Button button4;
-        private Button button5;
+        private Button buttonRaporty;
+        private Button buttonZarzadzanie;
         private Button button6;
     }
 }
