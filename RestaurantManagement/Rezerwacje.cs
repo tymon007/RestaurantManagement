@@ -157,7 +157,7 @@ namespace RestaurantManagement
                 return;
             }
             //Wyslanie query do bazy z Rezerwacjami na dzis (od aktualnej godziny w przod) i odswiezenie gridview
-
+            Refresh(DateTime.Now);
             selectedButton = buttonDzis;
             selectedButton.BackColor = Color.Silver;
             buttonWyborDate.BackColor = Color.White;
@@ -184,6 +184,9 @@ namespace RestaurantManagement
             }
             comboBoxRok.Items.Add(DateTime.Now.Year);
             comboBoxRok.Items.Add(DateTime.Now.Year + 1);
+
+            DateTime selectedDate = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
+            Refresh(selectedDate);
         }
 
         private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,6 +198,8 @@ namespace RestaurantManagement
         {
             DateTime dateForQuery = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
             MessageBox.Show(dateForQuery.ToString("dd.MM.yyyy"));
+            DateTime selectedDate = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
+            Refresh(selectedDate);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -203,6 +208,10 @@ namespace RestaurantManagement
         }
 
         private void Rezerwacje_Load(object sender, EventArgs e)
+        {
+            Refresh(DateTime.Now);
+        }
+        private void Refresh(DateTime data)
         {
             DatabaseHandler databaseHandler = new DatabaseHandler();
             List<Rezerwacja> rezerwacje = databaseHandler.GetRezerwacjaList();
@@ -218,6 +227,10 @@ namespace RestaurantManagement
 
             foreach (var rezerwacja in rezerwacje)
             {
+                if (rezerwacja.DataOd.Date != data.Date)
+                {
+                    continue;
+                }
                 int rowIndex = dataGridView1.Rows.Add();
                 dataGridView1.Rows[rowIndex].Cells["Id"].Value = rezerwacja.Id;
                 dataGridView1.Rows[rowIndex].Cells["DataOd"].Value = rezerwacja.DataOd;
