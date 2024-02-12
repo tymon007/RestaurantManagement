@@ -25,7 +25,7 @@ namespace RestaurantManagement.Service
         {
 
             string host = "localhost";
-            string database = "rm1";
+            string database = "rm";
             string username = "root";
             string password = "";
 
@@ -523,16 +523,12 @@ namespace RestaurantManagement.Service
         public List<String> GetSeats()
         {
             List < String > seats = new List<String>();
-        public List<NajpopularniejszeDania> PobierzRankingNajpopularniejszychDan()
-        {
-            List<NajpopularniejszeDania> ranking = new List<NajpopularniejszeDania>();
 
             using (MySqlConnection connection = GetConnection())
             {
                 connection.Open();
 
                 string query = "SELECT * FROM rm_miejsce";
-                string query = "SELECT Nazwa_Dania, Ilosc_Sprzedanych_Sztuk, Udzial_Procentowy FROM ranking_najpopularniejszych_dan";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -541,6 +537,29 @@ namespace RestaurantManagement.Service
                         while (reader.Read())
                         {
                             seats.Add(reader.GetString("Numer"));
+                        }
+                    }
+                }
+            }
+            return seats;
+        }
+
+        public List<NajpopularniejszeDania> PobierzRankingNajpopularniejszychDan()
+        {
+            List<NajpopularniejszeDania> ranking = new List<NajpopularniejszeDania>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT Nazwa_Dania, Ilosc_Sprzedanych_Sztuk, Udzial_Procentowy FROM ranking_najpopularniejszych_dan";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
                             NajpopularniejszeDania danie = new NajpopularniejszeDania
                             {
                                 nazwaDania = reader.GetString("Nazwa_Dania"),
@@ -553,9 +572,6 @@ namespace RestaurantManagement.Service
                     }
                 }
             }
-            return seats;
-        }
-
 
             return ranking;
         }
