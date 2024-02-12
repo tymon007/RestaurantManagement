@@ -165,6 +165,7 @@
             buttonZarzadzanie.TabIndex = 9;
             buttonZarzadzanie.Text = "Zarządzanie użytkownikami";
             buttonZarzadzanie.UseVisualStyleBackColor = false;
+            buttonZarzadzanie.Click += buttonZarzadzanie_Click;
             // 
             // button6
             // 

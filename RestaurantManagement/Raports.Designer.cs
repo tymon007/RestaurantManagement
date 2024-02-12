@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label_welcome = new Label();
             button_logout = new Button();
@@ -72,6 +72,7 @@
             comboBoxMiesiac = new ComboBox();
             label5 = new Label();
             comboBoxRok = new ComboBox();
+            label7 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPopularnoscDan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewGodzinyPracownikow).BeginInit();
@@ -83,6 +84,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Black;
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(label_welcome);
             panel1.Controls.Add(button_logout);
             panel1.Controls.Add(label_time);
@@ -132,24 +134,24 @@
             dataGridViewPopularnoscDan.AllowUserToResizeRows = false;
             dataGridViewPopularnoscDan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPopularnoscDan.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewPopularnoscDan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridViewPopularnoscDan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dataGridViewPopularnoscDan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewPopularnoscDan.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewPopularnoscDan.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Window;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dataGridViewPopularnoscDan.DefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewPopularnoscDan.Location = new Point(651, 194);
             dataGridViewPopularnoscDan.MultiSelect = false;
             dataGridViewPopularnoscDan.Name = "dataGridViewPopularnoscDan";
@@ -190,24 +192,24 @@
             dataGridViewGodzinyPracownikow.AllowUserToResizeRows = false;
             dataGridViewGodzinyPracownikow.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewGodzinyPracownikow.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridViewGodzinyPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dataGridViewGodzinyPracownikow.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dataGridViewGodzinyPracownikow.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewGodzinyPracownikow.Columns.AddRange(new DataGridViewColumn[] { Column4, Column5, Column6, Column7, Column8 });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridViewGodzinyPracownikow.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Window;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
+            dataGridViewGodzinyPracownikow.DefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewGodzinyPracownikow.Location = new Point(0, 634);
             dataGridViewGodzinyPracownikow.MultiSelect = false;
             dataGridViewGodzinyPracownikow.Name = "dataGridViewGodzinyPracownikow";
@@ -260,24 +262,24 @@
             dataGridViewPodzialPrzychodu.AllowUserToResizeRows = false;
             dataGridViewPodzialPrzychodu.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPodzialPrzychodu.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridViewPodzialPrzychodu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = SystemColors.Control;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle13.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dataGridViewPodzialPrzychodu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             dataGridViewPodzialPrzychodu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewPodzialPrzychodu.Columns.AddRange(new DataGridViewColumn[] { Column9, Column10, Column11, Column12, Column13, Column14 });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dataGridViewPodzialPrzychodu.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = SystemColors.Window;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle14.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dataGridViewPodzialPrzychodu.DefaultCellStyle = dataGridViewCellStyle14;
             dataGridViewPodzialPrzychodu.Location = new Point(0, 194);
             dataGridViewPodzialPrzychodu.MultiSelect = false;
             dataGridViewPodzialPrzychodu.Name = "dataGridViewPodzialPrzychodu";
@@ -336,24 +338,24 @@
             dataGridViewRocznyPrzychod.AllowUserToResizeRows = false;
             dataGridViewRocznyPrzychod.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewRocznyPrzychod.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridViewRocznyPrzychod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = SystemColors.Control;
+            dataGridViewCellStyle15.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dataGridViewRocznyPrzychod.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             dataGridViewRocznyPrzychod.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRocznyPrzychod.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn3 });
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = SystemColors.Window;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridViewRocznyPrzychod.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = SystemColors.Window;
+            dataGridViewCellStyle16.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle16.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.False;
+            dataGridViewRocznyPrzychod.DefaultCellStyle = dataGridViewCellStyle16;
             dataGridViewRocznyPrzychod.Location = new Point(651, 634);
             dataGridViewRocznyPrzychod.MultiSelect = false;
             dataGridViewRocznyPrzychod.Name = "dataGridViewRocznyPrzychod";
@@ -506,6 +508,17 @@
             comboBoxRok.TabIndex = 0;
             comboBoxRok.SelectedIndexChanged += comboBoxRok_SelectedIndexChanged;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(358, 20);
+            label7.Name = "label7";
+            label7.Size = new Size(294, 32);
+            label7.TabIndex = 4;
+            label7.Text = "PANEL ADMINISTRATORA";
+            // 
             // Raports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -580,5 +593,6 @@
         private Label label5;
         private ComboBox comboBoxRok;
         private Button buttonOdswiezDane;
+        private Label label7;
     }
 }

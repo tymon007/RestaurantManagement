@@ -92,5 +92,12 @@ namespace RestaurantManagement
             this.Hide();
             raportform.Show();
         }
+
+        private void buttonZarzadzanie_Click(object sender, EventArgs e)
+        {
+            ManageUser manageUser = new ManageUser();
+            Hide();
+            manageUser.Show();
+        }
     }
 }
