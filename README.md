@@ -1,3 +1,5 @@
+# English
+
 # RestaurantManagement
  A university project. Restaurant management system in C# WinForms with MySQL database. Application is designed to also work with POS environments.
 # Installation guide
@@ -14,7 +16,8 @@
  3. View "Zarządzanie zamówieniami" - Here a user can view, and manage orders, marking it as finished, or seeing the address to which the order should be delivered.
  4. View "Rezerwacje" - Here a user can create a new reservation for a certain table, and see todays reservations, or reservations for a chosen date.
  5. View "Grafik" - Here a user can fill if he/she will be available for the day or not, and plan his/her availability for next days. The data from this view will be then used to create reports of employee work times.
-# ----------------------------------------------
+
+# Język Polski
 
 # RestaurantManagement
  Projekt uniwersytecki. System zarządzania restauracją napisany w C# WinForms połączony z bazą danych MySQL. Aplikacja została dostosowana do użytku w systemach dotykowych typu POS.
