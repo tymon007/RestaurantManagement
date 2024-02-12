@@ -468,7 +468,7 @@ namespace RestaurantManagement.Service
                         {
                             Rezerwacja rezerwacja = new Rezerwacja
                             {
-                                Id = reader.GetInt32("Id"),
+                                Id = reader.GetInt32("IDrezerwacji"),
                                 DataOd = reader.GetDateTime("dataOd"),
                                 DataDo = reader.GetDateTime("dataDo"),
                                 OsobaRezerwujaca = reader.GetString("OsobaRezerwujaca"),
@@ -482,6 +482,29 @@ namespace RestaurantManagement.Service
             }
 
             return rezerwacje;  
+        }
+
+        public List<String> GetSeats()
+        {
+            List < String > seats = new List<String>();
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM rm_miejsce";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            seats.Add(reader.GetString("Numer"));
+                        }
+                    }
+                }
+            }
+            return seats;
         }
 
     }

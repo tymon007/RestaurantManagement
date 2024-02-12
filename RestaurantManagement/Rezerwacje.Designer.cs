@@ -53,6 +53,7 @@
             panelWyborDaty = new Panel();
             groupBox2 = new GroupBox();
             panelCzas = new Panel();
+            textBox_klient = new TextBox();
             label6 = new Label();
             comboBoxStolik = new ComboBox();
             buttonDodaj = new Button();
@@ -84,6 +85,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1020, 80);
             panel1.TabIndex = 7;
+            panel1.Paint += panel1_Paint;
             // 
             // label_welcome
             // 
@@ -327,6 +329,7 @@
             // 
             // panelCzas
             // 
+            panelCzas.Controls.Add(textBox_klient);
             panelCzas.Controls.Add(label6);
             panelCzas.Controls.Add(comboBoxStolik);
             panelCzas.Controls.Add(buttonDodaj);
@@ -336,8 +339,15 @@
             panelCzas.Controls.Add(dateTimePickerDo);
             panelCzas.Location = new Point(270, 113);
             panelCzas.Name = "panelCzas";
-            panelCzas.Size = new Size(481, 82);
+            panelCzas.Size = new Size(481, 114);
             panelCzas.TabIndex = 49;
+            // 
+            // textBox_klient
+            // 
+            textBox_klient.Location = new Point(141, 73);
+            textBox_klient.Name = "textBox_klient";
+            textBox_klient.Size = new Size(204, 33);
+            textBox_klient.TabIndex = 50;
             // 
             // label6
             // 
@@ -489,6 +499,7 @@
             Name = "Rezerwacje";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rezerwacje";
+            Load += Rezerwacje_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -540,5 +551,6 @@
         private DataGridViewTextBoxColumn ColumnStolik;
         private DataGridViewTextBoxColumn ColumnOsoba;
         private DataGridViewTextBoxColumn ColumnTelefon;
+        private TextBox textBox_klient;
     }
 }

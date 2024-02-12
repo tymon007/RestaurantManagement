@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestaurantManagement.Helpers;
 using RestaurantManagement.Models;
+using RestaurantManagement.Service;
 
 namespace RestaurantManagement
 {
@@ -27,24 +28,29 @@ namespace RestaurantManagement
             selectedButton = buttonDzis;
             selectedButton.BackColor = Color.Silver;
 
+            DatabaseHandler databaseHandler = new DatabaseHandler();
             //Wyslanie query do bazy z Rezerwacjami na dzis (od aktualnej godziny w przod) i umieszczenie w gridview
             //wyslanie query do bazy ze stolikami i wpisanie stolikow do comboboxStolik
-
-            comboBoxStolik.Items.AddRange(new object[] //tymczasowo
+            List<string> miejsca = databaseHandler.GetSeats();
+            foreach (var miejsce in miejsca)
             {
-                "2A",
-                "2B",
-                "2C",
-                "2D",
-                "2E",
-                "2F",
-                "3A",
-                "3B",
-                "4A",
-                "4B",
-                "4C",
-                "4D"
-            });
+                comboBoxStolik.Items.Add(miejsce);
+            }
+            //comboBoxStolik.Items.AddRange(new object[] //tymczasowo
+            //{
+            //    "2A",
+            //    "2B",
+            //    "2C",
+            //    "2D",
+            //    "2E",
+            //    "2F",
+            //    "3A",
+            //    "3B",
+            //    "4A",
+            //    "4B",
+            //    "4C",
+            //    "4D"
+            //});
             dateTimePickerOd.ShowUpDown = true;
             dateTimePickerOd.Format = DateTimePickerFormat.Custom;
             dateTimePickerOd.CustomFormat = "HH:mm";
@@ -122,9 +128,11 @@ namespace RestaurantManagement
 
             rezerwacja.DataOd = dataOd;
             rezerwacja.DataDo = dataDo;
-            rezerwacja.OsobaRezerwujaca = "Klient";
+            rezerwacja.OsobaRezerwujaca = textBox_klient.Text;
             rezerwacja.Stolik = stolik;
-            
+
+            DatabaseHandler databaseHandler = new DatabaseHandler();
+            databaseHandler.InsertReservation(rezerwacja);
             //Wyslac zapytanie do bazy czy jest wolny ten stolik w wybranym terminie, dane ponizej tymczasowe, po utworzeniu rezerwacji baza musi zwrocic idRezerwacji
             bool wolne = true;
             int idRezerwacji = 123456789;
@@ -170,12 +178,12 @@ namespace RestaurantManagement
             selectedButton.BackColor = Color.Silver;
             buttonDzis.BackColor = Color.White;
             panelWyborDaty.Enabled = true;
-            if(comboBoxRok.Items.Count>0)
+            if (comboBoxRok.Items.Count > 0)
             {
                 return;
             }
             comboBoxRok.Items.Add(DateTime.Now.Year);
-            comboBoxRok.Items.Add(DateTime.Now.Year+1);
+            comboBoxRok.Items.Add(DateTime.Now.Year + 1);
         }
 
         private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
@@ -189,5 +197,34 @@ namespace RestaurantManagement
             MessageBox.Show(dateForQuery.ToString("dd.MM.yyyy"));
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Rezerwacje_Load(object sender, EventArgs e)
+        {
+            DatabaseHandler databaseHandler = new DatabaseHandler();
+            List<Rezerwacja> rezerwacje = databaseHandler.GetRezerwacjaList();
+
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+
+            dataGridView1.Columns.Add("Id", "Id");
+            dataGridView1.Columns.Add("DataOd", "DataOd");
+            dataGridView1.Columns.Add("DataDo", "DataDo");
+            dataGridView1.Columns.Add("OsobaRezerwujaca", "OsobaRezerwujaca");
+            dataGridView1.Columns.Add("Stolik", "Stolik");
+
+            foreach (var rezerwacja in rezerwacje)
+            {
+                int rowIndex = dataGridView1.Rows.Add();
+                dataGridView1.Rows[rowIndex].Cells["Id"].Value = rezerwacja.Id;
+                dataGridView1.Rows[rowIndex].Cells["DataOd"].Value = rezerwacja.DataOd;
+                dataGridView1.Rows[rowIndex].Cells["DataDo"].Value = rezerwacja.DataDo;
+                dataGridView1.Rows[rowIndex].Cells["OsobaRezerwujaca"].Value = rezerwacja.OsobaRezerwujaca;
+                dataGridView1.Rows[rowIndex].Cells["Stolik"].Value = rezerwacja.Stolik;
+            }
+        }
     }
 }
