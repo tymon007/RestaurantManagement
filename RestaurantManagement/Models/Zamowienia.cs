@@ -51,6 +51,7 @@ namespace RestaurantManagement.Models
             public List<ZamowienieElement> PozycjeZamowienia;
             public bool NaMiejscu;
             public int? Adres;
+            public string AdresString;
             public int NumerZamowienia;
 
             public object DataGridViewModel => new

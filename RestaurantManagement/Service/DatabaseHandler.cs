@@ -24,7 +24,7 @@ namespace RestaurantManagement.Service
         {
 
             string host = "localhost";
-            string database = "rm";
+            string database = "rm1";
             string username = "root";
             string password = "";
 
@@ -369,9 +369,9 @@ namespace RestaurantManagement.Service
             {
                 connection.Open();
 
-                string query = "SELECT P.Ilosc, P.Danie_Id, D.Nazwa AS DanieNazwa, P.Cena_jednostki, P.Zamowienie_Id" +
-                         "FROM rm_pozycja AS P" +
-                         "INNER JOIN rm_dania AS D ON P.Danie_Id = D.Danie_Id" +
+                string query = "SELECT P.Ilosc, P.Danie_Id, D.Danie_Nazwa, P.Cena_jednostki, P.Zamowienie_Id " +
+                         "FROM rm_pozycja AS P " +
+                         "INNER JOIN rm_danie AS D ON P.Danie_Id = D.Danie_Id " +
                          "WHERE P.Zamowienie_Id = @OrderId;";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -386,7 +386,7 @@ namespace RestaurantManagement.Service
                             {
                                 produkt_ilosc = reader.GetInt32("Ilosc"),
                                 produkt_id = reader.GetInt32("Danie_Id"),
-                                produkt_nazwa = reader.GetString("DanieNazwa"),
+                                produkt_nazwa = reader.GetString("Danie_Nazwa"),
                                 produkt_cena = reader.GetDouble("Cena_jednostki"),
                                 zamowienie_id = reader.GetInt32("Zamowienie_Id")
                             };
@@ -399,7 +399,7 @@ namespace RestaurantManagement.Service
 
             return elements;
         }
-        public Adres GetAddressById(int addressId)
+        public Adres GetAddressById(int? addressId)
         {
             Adres address = null;
 

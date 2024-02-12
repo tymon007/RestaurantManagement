@@ -45,6 +45,7 @@
             namiejscu = new DataGridViewCheckBoxColumn();
             Stolik = new DataGridViewTextBoxColumn();
             Adres = new DataGridViewTextBoxColumn();
+            zamowieniaBindingSource1 = new BindingSource(components);
             zamowieniaBindingSource = new BindingSource(components);
             buttonNaMiejscu = new Button();
             buttonNaWynos = new Button();
@@ -54,11 +55,10 @@
             buttonNieZrealizowano = new Button();
             buttonFiltruj = new Button();
             buttonWyslano = new Button();
-            zamowieniaBindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -111,7 +111,6 @@
             // 
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.ControlDarkDark;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -124,7 +123,6 @@
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DataZ, GodzinaZ, GodzinaR, Zrealizowano, Pozycje, Wartość, namiejscu, Stolik, Adres });
-            dataGridView1.DataSource = zamowieniaBindingSource1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -208,6 +206,10 @@
             Adres.HeaderText = "Adres";
             Adres.Name = "Adres";
             Adres.ReadOnly = true;
+            // 
+            // zamowieniaBindingSource1
+            // 
+            zamowieniaBindingSource1.DataSource = typeof(Models.Zamowienia);
             // 
             // zamowieniaBindingSource
             // 
@@ -320,10 +322,6 @@
             buttonWyslano.Text = "Wysłano";
             buttonWyslano.UseVisualStyleBackColor = false;
             // 
-            // zamowieniaBindingSource1
-            // 
-            zamowieniaBindingSource1.DataSource = typeof(Models.Zamowienia);
-            // 
             // ManageOrder
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -349,8 +347,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).EndInit();
             ResumeLayout(false);
         }
 

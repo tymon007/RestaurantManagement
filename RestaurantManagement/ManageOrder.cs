@@ -40,9 +40,50 @@ namespace RestaurantManagement
 
         private void ManageOrder_Load(object sender, EventArgs e)
         {
-            zarzadzanieZamowieniami = new ZarzadzanieZamowieniami();
-            listaZamowien = databaseHandler.GetZamowienia();
+            List<ZarzadzanieZamowieniami> zamowienia = databaseHandler.GetZamowienia();
+
+
             
+            dataGridView1.Columns.Clear();
+
+            
+            dataGridView1.Columns.Add("IDZamowienia", "ID Zamówienia");
+            dataGridView1.Columns.Add("DataZlozenia", "Data Złożenia");
+            dataGridView1.Columns.Add("GodzinaZlozenia", "Godzina Złożenia");
+            dataGridView1.Columns.Add("Status_zamowienia", "Status Zamówienia");
+            dataGridView1.Columns.Add("Cena", "Cena");
+            dataGridView1.Columns.Add("Adres", "Adres");
+            dataGridView1.Columns.Add("GodzinaRealizacji", "Godzina Realizacji");
+            dataGridView1.Columns.Add("Pozycje", "Pozycje");
+
+
+            foreach (var zamowienie in zamowienia)
+            {
+                int rowIndex = dataGridView1.Rows.Add();
+                Adres adres = new Adres();
+                List<ZamowienieElement> pozycje = new List<ZamowienieElement>();
+                pozycje = databaseHandler.GetZamowienieElements(zamowienie.IDZamowienia);
+                if (zamowienie.Adres.HasValue)
+                {
+                    adres = databaseHandler.GetAddressById(zamowienie.Adres.Value);
+                    zamowienie.AdresString = adres.adres;
+                }
+                else
+                {
+                    zamowienie.AdresString = ""; // Możesz ustawić pusty tekst lub inny tekst, gdy Adres jest null
+                }
+                zamowienie.PozycjeZamowienia = pozycje;
+
+                dataGridView1.Rows[rowIndex].Cells["IDZamowienia"].Value = zamowienie.IDZamowienia;
+                dataGridView1.Rows[rowIndex].Cells["DataZlozenia"].Value = zamowienie.DataZlozenia.ToShortDateString();
+                dataGridView1.Rows[rowIndex].Cells["GodzinaZlozenia"].Value = zamowienie.GodzinaZlozenia;
+                dataGridView1.Rows[rowIndex].Cells["Status_zamowienia"].Value = zamowienie.Status_zamowienia;
+                dataGridView1.Rows[rowIndex].Cells["Cena"].Value = zamowienie.Cena;
+                dataGridView1.Rows[rowIndex].Cells["Adres"].Value = zamowienie.AdresString;
+                dataGridView1.Rows[rowIndex].Cells["GodzinaRealizacji"].Value = zamowienie.GodzinaRealizacji;
+                dataGridView1.Rows[rowIndex].Cells["pozycje"].Value = zamowienie.PozycjeZamowienia.ToString();
+            }
+
             //dataGridView1.DataSource = databaseHandler.GetDishesData();
 
             //foreach (DataRow row in dataGridView1.Rows)
