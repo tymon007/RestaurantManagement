@@ -185,8 +185,6 @@ namespace RestaurantManagement
             comboBoxRok.Items.Add(DateTime.Now.Year);
             comboBoxRok.Items.Add(DateTime.Now.Year + 1);
 
-            DateTime selectedDate = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
-            Refresh(selectedDate);
         }
 
         private void comboBoxRok_SelectedIndexChanged(object sender, EventArgs e)
