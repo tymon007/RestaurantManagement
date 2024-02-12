@@ -12,6 +12,7 @@ using System.Data;
 using RestaurantManagement.Models;
 using Org.BouncyCastle.Utilities.Net;
 using System.Reflection;
+using static RestaurantManagement.Models.Raporty;
 
 
 namespace RestaurantManagement.Service
@@ -430,6 +431,41 @@ namespace RestaurantManagement.Service
 
             return address;
         }
+        public List<GodzinyPracownikow> PobierzRaportGodzinPracownikow()
+        {
+            List<GodzinyPracownikow> raport = new List<GodzinyPracownikow>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT Imie, Nazwisko, User_Rola, Ilosc_Zaplanowanych_Godzin, Ilosc_Godzin_Urlopu, Ilosc_Godzin_Niedostepnych FROM raport_godzin_pracownikow_luty_2024";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var godzinyPracownikow = new GodzinyPracownikow
+                            {
+                                // Przypisanie wartości z readera do właściwości klasy GodzinyPracownikow
+                                imie = reader.GetString("Imie"),
+                                nazwisko = reader.GetString("Nazwisko"),
+                                rola = reader.GetString("User_Rola"),
+                                godzinyDostepny = reader.GetInt32("Ilosc_Zaplanowanych_Godzin"),
+                                godzinyUrlop = reader.GetInt32("Ilosc_Godzin_Urlopu"),
+                                godzinyNiedostepny = reader.GetInt32("Ilosc_Godzin_Niedostepnych")
+                            };
+
+                            raport.Add(godzinyPracownikow);
+                        }
+                    }
+                }
+            }
+
+            return raport;
+        }
         public void InsertReservation(Rezerwacja reservation)
         {
             using (MySqlConnection connection = GetConnection())
@@ -484,5 +520,102 @@ namespace RestaurantManagement.Service
             return rezerwacje;  
         }
 
+        public List<NajpopularniejszeDania> PobierzRankingNajpopularniejszychDan()
+        {
+            List<NajpopularniejszeDania> ranking = new List<NajpopularniejszeDania>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT Nazwa_Dania, Ilosc_Sprzedanych_Sztuk, Udzial_Procentowy FROM ranking_najpopularniejszych_dan";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            NajpopularniejszeDania danie = new NajpopularniejszeDania
+                            {
+                                nazwaDania = reader.GetString("Nazwa_Dania"),
+                                iloscSztuk = reader.GetInt32("Ilosc_Sprzedanych_Sztuk"),
+                                udzialProcentowy = reader.GetDouble("Udzial_Procentowy")
+                            };
+
+                            ranking.Add(danie);
+                        }
+                    }
+                }
+            }
+
+            return ranking;
+        }
+
+        public List<PrzychodMiesieczny> PobierzPrzychodMiesieczny()
+        {
+            List<PrzychodMiesieczny> przychodMiesieczny = new List<PrzychodMiesieczny>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT Laczny_przychod, Nazwa_Miesiaca FROM raport_przychodu_na_2024";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PrzychodMiesieczny przychod = new PrzychodMiesieczny
+                            {
+                                przychod = reader.GetDouble("Laczny_przychod"),
+                                miesiac = reader.GetString("Nazwa_Miesiaca"),
+                            };
+
+                            przychodMiesieczny.Add(przychod);
+                        }
+                    }
+                }
+            }
+
+            return przychodMiesieczny;
+        }
+
+        public List<PodzialPrzychodu> PobierzPodzialPrzychodu()
+        {
+            List<PodzialPrzychodu> podzialPrzychodu = new List<PodzialPrzychodu>();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "SELECT Przychod_Na_Miejscu, Udzial_Na_Miejscu, Ilosc_Zamowien_Na_Miejscu, Przychod_Na_Wynos, Udzial_Na_Wynos, Ilosc_Zamowien_Na_Wynos FROM widok_przychodu_luty_2024";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PodzialPrzychodu przychod = new PodzialPrzychodu
+                            {
+                                przychodNaMiejscu = reader.GetDouble("Przychod_Na_Miejscu"),
+                                udzialNaMiejscu = reader.GetDouble("Udzial_Na_Miejscu"),
+                                iloscNaMiejscu = reader.GetInt32("Ilosc_Zamowien_Na_Miejscu"),
+                                przychodNaWynos = reader.GetDouble("Przychod_Na_Wynos"),
+                                udzialNaWynos = reader.GetDouble("Udzial_Na_Wynos"),
+                                iloscNaWynos = reader.GetInt32("Ilosc_Zamowien_Na_Wynos")
+                            };
+
+                            podzialPrzychodu.Add(przychod);
+                        }
+                    }
+                }
+            }
+
+            return podzialPrzychodu;
+        }
     }
 }
