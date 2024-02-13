@@ -29,22 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label_welcome = new Label();
             button_logout = new Button();
             label_time = new Label();
             dataGridView1 = new DataGridView();
-            DataZ = new DataGridViewTextBoxColumn();
-            GodzinaZ = new DataGridViewTextBoxColumn();
-            GodzinaR = new DataGridViewTextBoxColumn();
-            Zrealizowano = new DataGridViewCheckBoxColumn();
-            Pozycje = new DataGridViewTextBoxColumn();
-            Wartość = new DataGridViewTextBoxColumn();
-            namiejscu = new DataGridViewCheckBoxColumn();
-            Stolik = new DataGridViewTextBoxColumn();
-            Adres = new DataGridViewTextBoxColumn();
             zamowieniaBindingSource1 = new BindingSource(components);
             zamowieniaBindingSource = new BindingSource(components);
             buttonNaMiejscu = new Button();
@@ -55,6 +46,7 @@
             buttonNieZrealizowano = new Button();
             buttonFiltruj = new Button();
             buttonWyslano = new Button();
+            labelSkunks = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource1).BeginInit();
@@ -109,28 +101,29 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = SystemColors.ControlDarkDark;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { DataZ, GodzinaZ, GodzinaR, Zrealizowano, Pozycje, Wartość, namiejscu, Stolik, Adres });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(224, 224, 224);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(224, 224, 224);
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.Location = new Point(0, 305);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
@@ -146,66 +139,7 @@
             dataGridView1.ShowRowErrors = false;
             dataGridView1.Size = new Size(1020, 715);
             dataGridView1.TabIndex = 7;
-            // 
-            // DataZ
-            // 
-            DataZ.HeaderText = "Data złożenia";
-            DataZ.Name = "DataZ";
-            DataZ.ReadOnly = true;
-            // 
-            // GodzinaZ
-            // 
-            GodzinaZ.HeaderText = "Godzina złożenia";
-            GodzinaZ.Name = "GodzinaZ";
-            GodzinaZ.ReadOnly = true;
-            // 
-            // GodzinaR
-            // 
-            GodzinaR.HeaderText = "Godzina realizacji";
-            GodzinaR.Name = "GodzinaR";
-            GodzinaR.ReadOnly = true;
-            // 
-            // Zrealizowano
-            // 
-            Zrealizowano.HeaderText = "Zrealizowano";
-            Zrealizowano.Name = "Zrealizowano";
-            Zrealizowano.ReadOnly = true;
-            // 
-            // Pozycje
-            // 
-            Pozycje.HeaderText = "Pozycje zamówienia";
-            Pozycje.Name = "Pozycje";
-            Pozycje.ReadOnly = true;
-            Pozycje.Resizable = DataGridViewTriState.True;
-            Pozycje.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Wartość
-            // 
-            Wartość.HeaderText = "Wartość";
-            Wartość.Name = "Wartość";
-            Wartość.ReadOnly = true;
-            Wartość.Resizable = DataGridViewTriState.True;
-            Wartość.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // namiejscu
-            // 
-            namiejscu.HeaderText = "Na miejscu";
-            namiejscu.Name = "namiejscu";
-            namiejscu.ReadOnly = true;
-            // 
-            // Stolik
-            // 
-            Stolik.HeaderText = "Stolik";
-            Stolik.Name = "Stolik";
-            Stolik.ReadOnly = true;
-            Stolik.Resizable = DataGridViewTriState.True;
-            Stolik.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Adres
-            // 
-            Adres.HeaderText = "Adres";
-            Adres.Name = "Adres";
-            Adres.ReadOnly = true;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // zamowieniaBindingSource1
             // 
@@ -248,7 +182,7 @@
             buttonGotowe.FlatStyle = FlatStyle.Flat;
             buttonGotowe.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             buttonGotowe.ForeColor = Color.Black;
-            buttonGotowe.Location = new Point(645, 265);
+            buttonGotowe.Location = new Point(770, 265);
             buttonGotowe.Name = "buttonGotowe";
             buttonGotowe.Size = new Size(125, 40);
             buttonGotowe.TabIndex = 12;
@@ -315,12 +249,22 @@
             buttonWyslano.FlatStyle = FlatStyle.Flat;
             buttonWyslano.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             buttonWyslano.ForeColor = Color.Black;
-            buttonWyslano.Location = new Point(770, 265);
+            buttonWyslano.Location = new Point(645, 265);
             buttonWyslano.Name = "buttonWyslano";
             buttonWyslano.Size = new Size(125, 40);
             buttonWyslano.TabIndex = 37;
             buttonWyslano.Text = "Wysłano";
             buttonWyslano.UseVisualStyleBackColor = false;
+            // 
+            // labelSkunks
+            // 
+            labelSkunks.AutoSize = true;
+            labelSkunks.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            labelSkunks.Location = new Point(402, 270);
+            labelSkunks.Name = "labelSkunks";
+            labelSkunks.Size = new Size(219, 32);
+            labelSkunks.TabIndex = 38;
+            labelSkunks.Text = "Podgląd zamówień";
             // 
             // ManageOrder
             // 
@@ -328,6 +272,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(1020, 1020);
+            Controls.Add(labelSkunks);
             Controls.Add(buttonWyslano);
             Controls.Add(buttonFiltruj);
             Controls.Add(buttonNieZrealizowano);
@@ -350,6 +295,7 @@
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)zamowieniaBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -359,15 +305,6 @@
         private Button button_logout;
         private Label label_time;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn DataZ;
-        private DataGridViewTextBoxColumn GodzinaZ;
-        private DataGridViewTextBoxColumn GodzinaR;
-        private DataGridViewCheckBoxColumn Zrealizowano;
-        private DataGridViewTextBoxColumn Pozycje;
-        private DataGridViewTextBoxColumn Wartość;
-        private DataGridViewCheckBoxColumn namiejscu;
-        private DataGridViewTextBoxColumn Stolik;
-        private DataGridViewTextBoxColumn Adres;
         private Button buttonNaMiejscu;
         private Button buttonNaWynos;
         private Button buttonGotowe;
@@ -378,5 +315,6 @@
         private Button buttonWyslano;
         private BindingSource zamowieniaBindingSource;
         private BindingSource zamowieniaBindingSource1;
+        private Label labelSkunks;
     }
 }

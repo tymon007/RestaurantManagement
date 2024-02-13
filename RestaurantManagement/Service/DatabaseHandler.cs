@@ -88,6 +88,41 @@ namespace RestaurantManagement.Service
             }
         }
 
+        public User GetUserByID(int userID)
+        {
+
+            User user = new User();
+
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = $"SELECT * FROM rm_users WHERE User_ID = {userID}";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            //employeeId = reader.GetInt32("User_Id");
+                            user = new User
+                            {
+                                Login = reader.GetString("User_Login"),
+                                Haslo = reader.GetString("User_Hasło"),
+                                UserID = reader.GetInt32("User_Id"),
+                                Rola = reader.GetString("User_Rola"),
+                                Status = reader.GetInt32("Status")
+                            };
+                        }
+                    }
+                }
+
+                return user;
+
+            }
+        }
+
 
 
         public Image LoadImageFromUrl(string imageUrl)
@@ -114,24 +149,49 @@ namespace RestaurantManagement.Service
             return image;
         }
 
-        public List<MenuItem> GetMenuItems()
+        public async Task<Image> LoadImageFromUrlAsync(string imageUrl)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var data = await httpClient.GetByteArrayAsync(imageUrl);
+                    using (var memoryStream = new MemoryStream(data))
+                    {
+                        return Image.FromStream(memoryStream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading image: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<List<MenuItem>> GetMenuItemsAsync()
         {
             List<MenuItem> menuItems = new List<MenuItem>();
+            List<Task<Image>> imageTasks = new List<Task<Image>>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
+                await connection.OpenAsync();
 
                 string query = "SELECT D.Danie_Id, D.Danie_Nazwa, D.Danie_Opis, D.Danie_Cena, D.Danie_Kategoria, Z.Zdjecie_Link " +
-                           "FROM rm_danie AS D " +
-                           "INNER JOIN rm_zdjecia AS Z ON D.Danie_Id = Z.Danie_Id";
+                    "FROM rm_danie AS D " + "INNER JOIN rm_zdjecia AS Z ON D.Danie_Id = Z.Danie_Id";
+
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    using (var reader = await command.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
+                            var imageUrl = reader.GetString("Zdjecie_Link");
+                            var imageTask = LoadImageFromUrlAsync(imageUrl);
+                            imageTasks.Add(imageTask);
+
                             MenuItem menuItem = new MenuItem
                             {
                                 id = reader.GetInt32("Danie_Id"),
@@ -139,27 +199,66 @@ namespace RestaurantManagement.Service
                                 description = reader.GetString("Danie_Opis"),
                                 price = reader.GetDouble("Danie_Cena"),
                                 category = reader.GetString("Danie_Kategoria"),
-                                image = LoadImageFromUrl(reader.GetString("Zdjecie_Link"))
                             };
 
                             menuItems.Add(menuItem);
                         }
                     }
                 }
+
+                var images = await Task.WhenAll(imageTasks);
+
+                for (int i = 0; i < menuItems.Count; i++)
+                {
+                    menuItems[i].image = images[i];
+                }
             }
 
             return menuItems;
         }
-        public List<ZarzadzanieZamowieniami> GetZamowienia()
+        public List<ZarzadzanieZamowieniami> GetZamowienia(int realizacja, int forma)
         {
+            //realizacja: 1 - 
+            
             List<ZarzadzanieZamowieniami> zamowienia = new List<ZarzadzanieZamowieniami>();
 
+            string queryAddOn = string.Empty;
+            if (realizacja == 1)
+            {
+                queryAddOn += " WHERE Zamowienie_Status = 'Przyjęte'";
+            }
+            else if(realizacja == 2)
+            {
+                queryAddOn += " WHERE Zamowienie_Status = 'Zrealizowane'";
+            }
+            if (forma==1)
+            {
+                if (queryAddOn == string.Empty)
+                {
+                    queryAddOn += " WHERE Adres_Id is null";
+                }
+                if (queryAddOn != string.Empty)
+                {
+                    queryAddOn += " AND Adres_Id is null";
+                }
+            }
+            else if(forma == 2)
+            {
+                if (queryAddOn == string.Empty)
+                {
+                    queryAddOn += " WHERE Adres_Id is not null";
+                }
+                if (queryAddOn != string.Empty)
+                {
+                    queryAddOn += " AND Adres_Id is not null";
+                }
+            }
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 string query = "SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Godzina_złożenia_zamówienia, User_Id, Adres_Id, Godzina_zakonczenia_zamowienia " +
-                    "FROM rm_zamowienie";
+                    "FROM rm_zamowienie" + queryAddOn;
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -197,7 +296,6 @@ namespace RestaurantManagement.Service
 
                 string query = "SELECT  Zamowienie_Data, Zamowienie_Cena, Miejsce_Numer, A.Adres_Ulica  FROM rm_zamowienie AS Z" +
                     " INNER JOIN rm_adres as A ON A.Adres_Id = Z.Adres_Id";
-                //"SELECT Zamowienie_Id, Zamowienie_Cena, Zamowienie_Status, Zamowienie_Data, User_Id, Adres_Id, Miejsce_Numer FROM rm_zamowienie";
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection))
                 {
@@ -239,13 +337,13 @@ namespace RestaurantManagement.Service
 
         public Pracownik GetEmployeeById(int userId)
         {
-            Pracownik employee = null;
+            Pracownik employee = new Pracownik();
 
             using (MySqlConnection connection = GetConnection())
             {
                 connection.Open();
 
-                string query = "SELECT * FROM rm_pracownik WHERE User_Id = @UserId";
+                string query = $"SELECT * FROM rm_pracownik WHERE User_Id = {userId}";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -255,17 +353,17 @@ namespace RestaurantManagement.Service
                     {
                         if (reader.Read())
                         {
-
+                            User user = GetUserByID(userId);
                             employee = new Pracownik
                             {
-                                Id = reader.GetInt32("User_Id"),
-                                Imie = reader.GetString("Imie"),
-                                Nazwisko = reader.GetString("Nazwisko"),
-                                Plec = reader.GetString("Plec"),
-                                Wiek = reader.GetInt32("Wiek"),
-                                DataRozpoczeciaPracy = reader.GetDateTime("Data_Rozpoczecia_Pracy"),
-                                LinkDoZdjecia = reader.GetString("LinkDoZdjecia")
-
+                                Id = reader.GetInt32("Pracownik_ID"),
+                                Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? string.Empty : reader.GetString("Imie"),
+                                Nazwisko = reader.IsDBNull(reader.GetOrdinal("Nazwisko")) ? string.Empty : reader.GetString("Nazwisko"),
+                                Plec = reader.IsDBNull(reader.GetOrdinal("Plec")) ? string.Empty : reader.GetString("Plec"),
+                                Wiek = reader.IsDBNull(reader.GetOrdinal("Wiek")) ? 0 : reader.GetInt32("Wiek"),
+                                DataRozpoczeciaPracy = reader.IsDBNull(reader.GetOrdinal("Data_Rozpoczecia_Pracy")) ? DateTime.MinValue : reader.GetDateTime("Data_Rozpoczecia_Pracy"),
+                                LinkDoZdjecia = reader.IsDBNull(reader.GetOrdinal("LinkDoZdjecia")) ? string.Empty : reader.GetString("LinkDoZdjecia"),
+                                Uzytkownik = user
                             };
                         }
                     }

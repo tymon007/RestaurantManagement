@@ -79,7 +79,6 @@ namespace RestaurantManagement
 
         private void comboBoxDzien_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panelCzasPracy.Show();
 
             DateTime selectedDate = daypicker.CreateCombinedDateNoTime(comboBoxRok, comboBoxMiesiac, comboBoxDzien);
             
@@ -97,7 +96,9 @@ namespace RestaurantManagement
                 string message = "Wybrany dzień już jest zaplanowany.\n" +
                 "Tego dnia jesteś " + grafik.stan + " od godziny " + grafik.godzinaOd + " do godziny " + grafik.godzinaDo;
                 MessageBox.Show(message);
+                return;
             }
+            panelCzasPracy.Show();
         }
 
         private void comboBoxDzien_Click(object sender, EventArgs e)

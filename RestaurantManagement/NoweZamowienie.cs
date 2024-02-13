@@ -39,51 +39,35 @@ namespace RestaurantManagement
 
         private void InitializePanels(int numberOfPanels, int startX, int startY)
         {
-            for (int i = 0; i < numberOfPanels; i++)
+            for (int dishCategory = 0; dishCategory < numberOfPanels; dishCategory++)
             {
                 HorizontalScrollFlowLayoutPanel hpanel = new HorizontalScrollFlowLayoutPanel();
                 hpanel.Size = new Size(900, 170);
-                hpanel.Location = new Point(startX, startY + i * (hpanel.Height + 10));
+                hpanel.Location = new Point(startX, startY + dishCategory * (hpanel.Height + 10));
                 Controls.Add(hpanel);
-                AddButtonsWithImagesToHPanel(hpanel);
+                AddButtonsWithImagesToHPanelAsync(hpanel,dishCategory);
             }
         }
 
-        private void AddButtonsWithImagesToHPanel(HorizontalScrollFlowLayoutPanel hpanel)
+        private async void AddButtonsWithImagesToHPanelAsync(HorizontalScrollFlowLayoutPanel hpanel, int type)
         {
-            //List<ImageWithDescription> images = new List<ImageWithDescription>();
-            //helper.GenerateImagesWithDescription(10, images);
             DatabaseHandler dbHandler = new DatabaseHandler();
 
-            List<MenuItem> allMenuItems = dbHandler.GetMenuItems();
+            List<MenuItem> allMenuItems = await dbHandler.GetMenuItemsAsync();
 
+            switch (type)
+            {
+                case 0:
+                    allMenuItems = allMenuItems.Where(item => item.category == "Burger").ToList();
+                    break;
+                case 1:
+                    allMenuItems = allMenuItems.Where(item => item.category == "Przekąska").ToList();
+                    break;
+                case 2:
+                    allMenuItems = allMenuItems.Where(item => item.category == "Napój").ToList();
+                    break;
+            }
 
-            //foreach (ImageWithDescription item in images)
-            //{
-            //    // Kontener dla obrazka i etykiety
-            //    Panel panel = new Panel();
-            //    panel.Size = new Size(140, 140);
-
-            //    // Obrazek
-            //    Button button = new Button();
-            //    button.BackgroundImage = item.image;
-            //    button.BackgroundImageLayout = ImageLayout.Stretch;
-            //    button.Size = new Size(140, 100);
-
-            //    // Label
-            //    Label descLabel = new Label();
-            //    descLabel.Text = item.description;
-            //    descLabel.Dock = DockStyle.Bottom;
-            //    descLabel.Font = new Font(descLabel.Font.FontFamily, 10);
-            //    descLabel.TextAlign = ContentAlignment.MiddleCenter;
-
-            //    button.Click += (sender, e) => ShowAdditionalControlsInPopup(panel, descLabel.Text);
-
-            //    panel.Controls.Add(button);
-            //    panel.Controls.Add(descLabel);
-
-            //    hpanel.Controls.Add(panel);
-            //}
             foreach (MenuItem item in allMenuItems)
             {
                 // Kontener dla obrazka i etykiety
@@ -161,12 +145,12 @@ namespace RestaurantManagement
             popupForm.ShowDialog();
         }
 
-        private void DodajZamowienieDoListy(string nazwaProduktu, int ilosc)
+        private async void DodajZamowienieDoListy(string nazwaProduktu, int ilosc)
         {
             DatabaseHandler dbHandler = new DatabaseHandler();
             int danie_id = 0;
             double danie_cena = 0;
-            List<MenuItem> allMenuItems = dbHandler.GetMenuItems();
+            List<MenuItem> allMenuItems = await dbHandler.GetMenuItemsAsync();
 
             foreach (MenuItem item in allMenuItems)
             {

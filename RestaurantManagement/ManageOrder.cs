@@ -29,6 +29,7 @@ namespace RestaurantManagement
             buttonGotowe.Visible = false;
             buttonUsun.Visible = false;
             buttonWyslano.Visible = false;
+            labelSkunks.Hide();
         }
 
         private void button_logout_Click(object sender, EventArgs e)
@@ -40,79 +41,7 @@ namespace RestaurantManagement
 
         private void ManageOrder_Load(object sender, EventArgs e)
         {
-            List<ZarzadzanieZamowieniami> zamowienia = databaseHandler.GetZamowienia();
-
-
             
-            dataGridView1.Columns.Clear();
-
-            
-            dataGridView1.Columns.Add("IDZamowienia", "ID Zamówienia");
-            dataGridView1.Columns.Add("DataZlozenia", "Data Złożenia");
-            dataGridView1.Columns.Add("GodzinaZlozenia", "Godzina Złożenia");
-            dataGridView1.Columns.Add("Status_zamowienia", "Status Zamówienia");
-            dataGridView1.Columns.Add("Cena", "Cena");
-            dataGridView1.Columns.Add("Adres", "Adres");
-            dataGridView1.Columns.Add("GodzinaRealizacji", "Godzina Realizacji");
-            dataGridView1.Columns.Add("Pozycje", "Pozycje");
-
-
-            foreach (var zamowienie in zamowienia)
-            {
-                int rowIndex = dataGridView1.Rows.Add();
-                Adres adres = new Adres();
-                List<ZamowienieElement> pozycje = new List<ZamowienieElement>();
-                pozycje = databaseHandler.GetZamowienieElements(zamowienie.IDZamowienia);
-                if (zamowienie.Adres.HasValue)
-                {
-                    adres = databaseHandler.GetAddressById(zamowienie.Adres.Value);
-                    zamowienie.AdresString = adres.adres;
-                }
-                else
-                {
-                    zamowienie.AdresString = ""; 
-                }
-                zamowienie.PozycjeZamowienia = pozycje;
-
-                String listaPozycji = "";
-                foreach (var pozycja in pozycje)
-                {
-                    listaPozycji += pozycja + " ";
-                }
-
-                dataGridView1.Rows[rowIndex].Cells["IDZamowienia"].Value = zamowienie.IDZamowienia;
-                dataGridView1.Rows[rowIndex].Cells["DataZlozenia"].Value = zamowienie.DataZlozenia.ToShortDateString();
-                dataGridView1.Rows[rowIndex].Cells["GodzinaZlozenia"].Value = zamowienie.GodzinaZlozenia;
-                dataGridView1.Rows[rowIndex].Cells["Status_zamowienia"].Value = zamowienie.Status_zamowienia;
-                dataGridView1.Rows[rowIndex].Cells["Cena"].Value = zamowienie.Cena;
-                dataGridView1.Rows[rowIndex].Cells["Adres"].Value = zamowienie.AdresString;
-                dataGridView1.Rows[rowIndex].Cells["GodzinaRealizacji"].Value = zamowienie.GodzinaRealizacji;
-                dataGridView1.Rows[rowIndex].Cells["pozycje"].Value = listaPozycji;//zamowienie.PozycjeZamowienia.ToString();
-            }
-
-            //dataGridView1.DataSource = databaseHandler.GetDishesData();
-
-            //foreach (DataRow row in dataGridView1.Rows)
-            //{
-            //    // Map data from the database to existing columns in the DataGridView
-            //    int dishID = Convert.ToInt32(row["DishID"]);
-            //    dataGridView1.Rows.Add(
-            //        dishID,
-            //        row["DishName"].ToString(),
-            //        row["DishDescription"].ToString(),
-            //        Convert.ToDecimal(row["DishPrice"]),
-            //        GetCategoryName(Convert.ToInt32(row["CategoryID"])), // Map to existing column "Category"
-            //        GetChefName(Convert.ToInt32(row["ChefID"]))          // Map to existing column "Chef"
-            //    );
-
-            //    // Optionally modify values
-            //    if (row["DishName"].ToString().Contains("Special"))
-            //    {
-            //        // Modify the value in the "Description" column for dishes with "Special" in the name
-            //        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["Description"].Value = "Special Dish!";
-            //    }
-            //}
-
         }
 
         private void buttonNaMiejscu_Click(object sender, EventArgs e)
@@ -170,22 +99,110 @@ namespace RestaurantManagement
 
         private void buttonFiltruj_Click(object sender, EventArgs e)
         {
-            //pobranie warunkow do query z selectedButtons
-            //wyslanie query do bazy i zbindowanie danych do datagridview. Nie mozna wrzucac po indexach tylko trzeba zbindowac jak uczciwy polak
-            //zeby przy sortowaniu sie nic zlego nie dzialo
+            labelSkunks.Hide();
+            buttonWyslano.Hide();
 
+            if(selectedButtonMiejsceWynos == buttonNaWynos && selectedButtonZrealizowanoNieZrealizowano == buttonNieZrealizowano)
+            {
+                buttonWyslano.Show();
+            }
             if (selectedButtonZrealizowanoNieZrealizowano == buttonNieZrealizowano)
             {
-                //funkcja pobierajaca dane z bazy do dgv 
                 buttonGotowe.Show();
                 buttonUsun.Show();
-                buttonWyslano.Show();
             }
             else
             {
                 buttonGotowe.Hide();
                 buttonUsun.Hide();
-                buttonWyslano.Hide();
+            }
+            if(selectedButtonMiejsceWynos is null && selectedButtonZrealizowanoNieZrealizowano is null)
+            {
+                labelSkunks.Show();
+            }
+
+            int forma = 0;
+            int realizacja = 0;
+
+            if (selectedButtonMiejsceWynos == null)
+            {
+                forma = 0;
+            }
+            else if (selectedButtonMiejsceWynos == buttonNaMiejscu)
+            {
+                forma = 1;
+            }
+            else if (selectedButtonMiejsceWynos == buttonNaWynos)
+            {
+                forma = 2;
+            }
+
+
+            if (selectedButtonZrealizowanoNieZrealizowano == null)
+            {
+                realizacja = 0;
+            }
+            else if (selectedButtonZrealizowanoNieZrealizowano == buttonNieZrealizowano)
+            {
+                realizacja = 1;
+            }
+            else if (selectedButtonZrealizowanoNieZrealizowano == buttonZrealizowano)
+            {
+                realizacja = 2;
+            }
+
+
+            List<ZarzadzanieZamowieniami> zamowienia = databaseHandler.GetZamowienia(realizacja, forma);
+            zamowienia.Reverse(); //od najwiekszych ID sortowane zeby najnowsze zamowineia byly na gorze
+
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("IDZamowienia", "ID Zamówienia");
+            dataGridView1.Columns.Add("DataZlozenia", "Data Złożenia");
+            dataGridView1.Columns.Add("GodzinaZlozenia", "Godzina Złożenia");
+            dataGridView1.Columns.Add("Status_zamowienia", "Status Zamówienia");
+            dataGridView1.Columns.Add("Cena", "Cena");
+            dataGridView1.Columns.Add("Adres", "Adres");
+            dataGridView1.Columns.Add("GodzinaRealizacji", "Godzina Realizacji");
+
+            DataGridViewButtonColumn btnPozycje = new DataGridViewButtonColumn();
+            btnPozycje.Name = "Pozycje";
+            btnPozycje.HeaderText = "Pozycje";
+            btnPozycje.Text = "Pokaż";
+            btnPozycje.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(btnPozycje);
+
+            foreach (var zamowienie in zamowienia)
+            {
+                int rowIndex = dataGridView1.Rows.Add();
+                Adres adres = new Adres();
+                List<ZamowienieElement> pozycje = new List<ZamowienieElement>();
+                pozycje = databaseHandler.GetZamowienieElements(zamowienie.IDZamowienia);
+                if (zamowienie.Adres.HasValue)
+                {
+                    adres = databaseHandler.GetAddressById(zamowienie.Adres.Value);
+                    zamowienie.AdresString = adres.adres;
+                }
+                else
+                {
+                    zamowienie.AdresString = string.Empty;
+                }
+                zamowienie.PozycjeZamowienia = pozycje;
+
+                String listaPozycji = "";
+                foreach (var pozycja in pozycje)
+                {
+                    listaPozycji += pozycja + " ";
+                }
+
+                dataGridView1.Rows[rowIndex].Cells["IDZamowienia"].Value = zamowienie.IDZamowienia;
+                dataGridView1.Rows[rowIndex].Cells["DataZlozenia"].Value = zamowienie.DataZlozenia.ToShortDateString();
+                dataGridView1.Rows[rowIndex].Cells["GodzinaZlozenia"].Value = zamowienie.GodzinaZlozenia.ToString(@"hh\:mm");
+                dataGridView1.Rows[rowIndex].Cells["Status_zamowienia"].Value = zamowienie.Status_zamowienia;
+                dataGridView1.Rows[rowIndex].Cells["Cena"].Value = zamowienie.Cena + " zł";
+                dataGridView1.Rows[rowIndex].Cells["Adres"].Value = zamowienie.AdresString;
+                dataGridView1.Rows[rowIndex].Cells["GodzinaRealizacji"].Value = zamowienie.GodzinaRealizacji.HasValue
+                    ? zamowienie.GodzinaRealizacji.Value.ToString(@"hh\:mm"): string.Empty;
+                dataGridView1.Rows[rowIndex].Cells["Pozycje"].Value = listaPozycji;
             }
 
         }
@@ -205,6 +222,23 @@ namespace RestaurantManagement
             {
                 MessageBox.Show("Brak zamowien do usuniecia");
                 return;
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Pozycje" && e.RowIndex >= 0)
+            {
+                int idZamowienia = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IDZamowienia"].Value);
+
+                var pozycje = databaseHandler.GetZamowienieElements(idZamowienia);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (var pozycja in pozycje)
+                {
+                    sb.AppendLine($"{pozycja.produkt_nazwa} | {pozycja.produkt_ilosc} | {pozycja.produkt_cena} zł");
+                }
+                MessageBox.Show(sb.ToString(), "Pozycje zamówienia", MessageBoxButtons.OK);
             }
         }
     }
