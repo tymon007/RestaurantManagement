@@ -372,6 +372,41 @@ namespace RestaurantManagement.Service
 
             return employee;
         }
+
+        public List<Pracownik> GetAllEmployees()
+        {
+            List<Pracownik> employees = new List<Pracownik>();
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = $"SELECT * FROM rm_pracownik";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Pracownik newEmployee = new Pracownik
+                            {
+                                Id = reader.GetInt32("Pracownik_ID"),
+                                Imie = reader.IsDBNull(reader.GetOrdinal("Imie")) ? string.Empty : reader.GetString("Imie"),
+                                Nazwisko = reader.IsDBNull(reader.GetOrdinal("Nazwisko")) ? string.Empty : reader.GetString("Nazwisko"),
+                                Plec = reader.IsDBNull(reader.GetOrdinal("Plec")) ? string.Empty : reader.GetString("Plec"),
+                                Wiek = reader.IsDBNull(reader.GetOrdinal("Wiek")) ? 0 : reader.GetInt32("Wiek"),
+                                DataRozpoczeciaPracy = reader.IsDBNull(reader.GetOrdinal("Data_Rozpoczecia_Pracy")) ? DateTime.MinValue : reader.GetDateTime("Data_Rozpoczecia_Pracy"),
+                                LinkDoZdjecia = reader.IsDBNull(reader.GetOrdinal("LinkDoZdjecia")) ? string.Empty : reader.GetString("LinkDoZdjecia"),
+                                Uzytkownik = GetUserByID(reader.GetInt32("User_Id"))
+                            };
+                            employees.Add(newEmployee);
+                        }
+                    }
+                }
+            }
+
+            return employees;
+        }
         public GrafikWpis GetScheduleByDay(DateTime day)
         {
             GrafikWpis schedule = null;
@@ -739,5 +774,74 @@ namespace RestaurantManagement.Service
 
             return podzialPrzychodu;
         }
+
+        public void ZmienRolePracownika(int idPracownika, string nowaRola)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = @"UPDATE rm_users AS u
+                         JOIN rm_pracownik AS p ON u.User_Id = p.User_Id
+                         SET u.User_Rola = @NowaRola 
+                         WHERE p.Pracownik_ID = @IdPracownika";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NowaRola", nowaRola);
+                    command.Parameters.AddWithValue("@IdPracownika", idPracownika);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ZmienStatusPracownika(int idPracownika, int nowyStatus)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = @"UPDATE rm_users AS u
+                         JOIN rm_pracownik AS p ON u.User_Id = p.User_Id
+                         SET u.Status = @NowyStatus 
+                         WHERE p.Pracownik_ID = @IdPracownika";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NowyStatus", nowyStatus);
+                    command.Parameters.AddWithValue("@IdPracownika", idPracownika);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UsunDanePracownika(int idPracownika)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = @"UPDATE rm_pracownik 
+                         SET Imie = NULL, 
+                             Nazwisko = NULL, 
+                             Plec = NULL, 
+                             Wiek = NULL, 
+                             Data_Rozpoczecia_Pracy = NULL, 
+                             LinkDoZdjecia = NULL
+                         WHERE Pracownik_ID = @IdPracownika";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@IdPracownika", idPracownika);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
     }
 }

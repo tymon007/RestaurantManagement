@@ -8,7 +8,7 @@ namespace RestaurantManagement.Models
 {
     public class Pracownik
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string? Imie { get; set; }
         public string? Nazwisko { get; set; }
         public User Uzytkownik { get; set; }

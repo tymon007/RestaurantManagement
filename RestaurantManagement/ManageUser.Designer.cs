@@ -36,14 +36,6 @@
             button_logout = new Button();
             label_time = new Label();
             dataGridViewPracownicy = new DataGridView();
-            Column8 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
             buttonUsunDane = new Button();
             buttonZmienStatus = new Button();
             panel2 = new Panel();
@@ -127,7 +119,6 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridViewPracownicy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewPracownicy.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPracownicy.Columns.AddRange(new DataGridViewColumn[] { Column8, Column4, Column1, Column2, Column3, Column5, Column6, Column7 });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -136,7 +127,7 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.Black;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridViewPracownicy.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewPracownicy.Location = new Point(0, 160);
+            dataGridViewPracownicy.Location = new Point(0, 219);
             dataGridViewPracownicy.MultiSelect = false;
             dataGridViewPracownicy.Name = "dataGridViewPracownicy";
             dataGridViewPracownicy.ReadOnly = true;
@@ -149,56 +140,8 @@
             dataGridViewPracownicy.ShowCellToolTips = false;
             dataGridViewPracownicy.ShowEditingIcon = false;
             dataGridViewPracownicy.ShowRowErrors = false;
-            dataGridViewPracownicy.Size = new Size(1020, 860);
+            dataGridViewPracownicy.Size = new Size(1020, 801);
             dataGridViewPracownicy.TabIndex = 11;
-            // 
-            // Column8
-            // 
-            Column8.HeaderText = "Status";
-            Column8.Name = "Column8";
-            Column8.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "ID Pracownika";
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Imię";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Nazwisko";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Rola";
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Płeć";
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "Wiek";
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            Column7.HeaderText = "Pracuje od";
-            Column7.Name = "Column7";
-            Column7.ReadOnly = true;
             // 
             // buttonUsunDane
             // 
@@ -293,14 +236,6 @@
         private Button button_logout;
         private Label label_time;
         private DataGridView dataGridViewPracownicy;
-        private DataGridViewTextBoxColumn Column8;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column7;
         private Button buttonUsunDane;
         private Button buttonZmienStatus;
         private Panel panel2;
