@@ -28,7 +28,7 @@ namespace RestaurantManagement
             databaseHandler = new DatabaseHandler();
             buttonGotowe.Visible = false;
             buttonUsun.Visible = false;
-            buttonWyslano.Visible = false;
+            
             labelSkunks.Hide();
         }
 
@@ -100,12 +100,9 @@ namespace RestaurantManagement
         private void buttonFiltruj_Click(object sender, EventArgs e)
         {
             labelSkunks.Hide();
-            buttonWyslano.Hide();
+           
 
-            if(selectedButtonMiejsceWynos == buttonNaWynos && selectedButtonZrealizowanoNieZrealizowano == buttonNieZrealizowano)
-            {
-                buttonWyslano.Show();
-            }
+
             if (selectedButtonZrealizowanoNieZrealizowano == buttonNieZrealizowano)
             {
                 buttonGotowe.Show();
@@ -114,7 +111,7 @@ namespace RestaurantManagement
             else
             {
                 buttonGotowe.Hide();
-                buttonUsun.Hide();
+                buttonUsun.Show();
             }
             if(selectedButtonMiejsceWynos is null && selectedButtonZrealizowanoNieZrealizowano is null)
             {
@@ -209,20 +206,34 @@ namespace RestaurantManagement
 
         private void buttonGotowe_Click(object sender, EventArgs e)
         {
-            if (listaZamowien.Count == 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Brak zamowien do oznaczenia jako gotowe");
-                return;
+                int orderId = (int)dataGridView1.SelectedRows[0].Cells["IDZamowienia"].Value;
+                databaseHandler.ZrealizujZamowienie(orderId);
+                buttonFiltruj_Click(sender, e);
+                //dataGridView1.SelectedRows[0].Cells["Status_zamowienia"].Value = "Zrealizowane";
+                //dataGridView1.SelectedRows[0].Cells["GodzinaRealizacji"].Value = DateTime.Now.ToString(@"hh\:mm");
+            }
+            else
+            {
+                MessageBox.Show("Proszę zaznaczyć wiersz, który chcesz zrealizować.", "Brak zaznaczenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void buttonUsun_Click(object sender, EventArgs e)
         {
-            if (listaZamowien.Count == 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Brak zamowien do usuniecia");
-                return;
+                int orderId = (int)dataGridView1.SelectedRows[0].Cells["IDZamowienia"].Value;
+                databaseHandler.UsunZamowienie(orderId);
+
+                buttonFiltruj_Click(sender, e);
             }
+            else
+            {
+                MessageBox.Show("Proszę zaznaczyć wiersz, który chcesz usunąć.", "Brak zaznaczenia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

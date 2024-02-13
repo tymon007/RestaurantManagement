@@ -840,7 +840,62 @@ namespace RestaurantManagement.Service
                 }
             }
         }
+        public void UsunZamowienie(int orderId)
+        {
 
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                using (MySqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        
+                        string deletePozycjaQuery = "DELETE FROM rm_pozycja WHERE Zamowienie_Id = @OrderId";
+                        using (MySqlCommand deletePozycjaCommand = new MySqlCommand(deletePozycjaQuery, connection, transaction))
+                        {
+                            deletePozycjaCommand.Parameters.AddWithValue("@OrderId", orderId);
+                            deletePozycjaCommand.ExecuteNonQuery();
+                        }
+
+                        
+                        string deleteZamowienieQuery = "DELETE FROM rm_zamowienie WHERE Zamowienie_Id = @OrderId";
+                        using (MySqlCommand deleteZamowienieCommand = new MySqlCommand(deleteZamowienieQuery, connection, transaction))
+                        {
+                            deleteZamowienieCommand.Parameters.AddWithValue("@OrderId", orderId);
+                            deleteZamowienieCommand.ExecuteNonQuery();
+                        }
+
+                        
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        transaction.Rollback();
+                        Console.WriteLine("Wystąpił błąd podczas usuwania zamówienia: " + ex.Message);
+                        
+                    }
+                }
+            }
+        }
+        public void ZrealizujZamowienie(int orderId)
+        {
+            using (MySqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = "UPDATE rm_zamowienie SET Zamowienie_status = 'Zrealizowane', " +
+                    "Godzina_zakonczenia_zamowienia = NOW() WHERE Zamowienie_Id = @OrderId";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@OrderId", orderId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
 
     }
