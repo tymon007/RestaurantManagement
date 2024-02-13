@@ -267,8 +267,6 @@ namespace RestaurantManagement
                 MessageBox.Show("Brak pozycji zamowienia");
                 return;
             }
-
-            //wyslanie query do bazy zeby otrzymac id zamowienia. Baza ma zwrocic id zamowienia i czy sie udalo zlozyc 
             DatabaseHandler dbHandler = new DatabaseHandler();
             
             bool successful = true;
@@ -305,6 +303,13 @@ namespace RestaurantManagement
                 zamowienie.NaMiejscu = naMiejscu;
                 
                 MessageBox.Show("Podsumowanie zamówienia: \n\n" + zamowienie.ToString());
+
+                listaZamowien.Clear();
+                RefreshDataGridView();
+                textBoxAdres.Clear();
+                textBoxNumerTelefonu.Clear();
+                selectedButton = buttonNaMiejscu;
+                buttonNaMiejscu.BackColor = Color.Silver;
             }
         }
 
